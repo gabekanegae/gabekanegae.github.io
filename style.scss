@@ -18,8 +18,9 @@ html {
 }
 
 body {
-	background: $white;
+  background: #eee;
   font: 18px/1.4 $helvetica;
+  font-family: 'Roboto', sans-serif;
   color: $darkGray;
 }
 
@@ -30,14 +31,20 @@ body {
   width: 100%;
 }
 
-h1, h2, h3, h4, h5, h6 {
-  font-family: $helveticaNeue;
+h1, h2, h3, h4, h5, h6, .read-more {
   color: $darkerGray;
-  font-weight: bold;
+  font-family: 'Roboto', sans-serif;
 
   line-height: 1.7;
   margin: 1em 0 15px;
   padding: 0;
+
+  em {
+    font-style: normal;
+    font-size: 16px;
+    color: #aaa;
+    text-transform: lowercase;
+  }
 
   @include mobile {
     line-height: 1.4;
@@ -52,16 +59,15 @@ h1 {
 }
 
 h2 {
-  font-size: 24px;
+  font-size: 28px;
 }
 
 h3 {
-  font-size: 20px;
+  font-size: 22px;
 }
 
 h4 {
-  font-size: 18px;
-  color: $gray;
+  font-size: 20px;
 }
 
 p {
@@ -71,7 +77,7 @@ p {
 a {
   color: $blue;
   text-decoration: none;
-	cursor: pointer;
+  cursor: pointer;
   &:hover, &:active {
     color: $blue;
   }
@@ -116,8 +122,7 @@ img {
 }
 
 .date {
-  font-style: italic;
-  color: $gray;
+  color: #aaa;
 }
 
 // Specify the color of the selection
@@ -151,15 +156,21 @@ img {
 //
 
 .wrapper-masthead {
-  margin-bottom: 50px;
+  margin-bottom: 40px;
+
+  background: #1a1a1a;
+  border-bottom: 5px solid #00ace9;
 }
 
 .masthead {
-  padding: 20px 0;
-  border-bottom: 1px solid $lightGray;
+  padding: 15px 0;
 
   @include mobile {
     text-align: center;
+  }
+
+  a:hover {
+    color: $lightGray;
   }
 }
 
@@ -167,7 +178,7 @@ img {
   float: left;
   width: 70px;
   height: 70px;
-  margin-right: 15px;
+  margin-right: 10px;
 
   @include mobile {
     float: none;
@@ -176,7 +187,7 @@ img {
   }
 
   img {
-    border-radius: 5px;
+    border-radius: 2px;
   }
 }
 
@@ -192,9 +203,8 @@ img {
 
 .site-name {
   margin: 0;
-  color: $darkGray;
+  color: $lightGray;
   cursor: pointer;
-  font-family: $helveticaNeue;
   font-weight: 300;
   font-size: 28px;
   letter-spacing: 1px;
@@ -202,7 +212,7 @@ img {
 
 .site-description {
   margin: -5px 0 0 0;
-  color: $gray;
+  color: #aaa;
   font-size: 16px;
 
   @include mobile {
@@ -213,7 +223,6 @@ img {
 nav {
   float: right;
   margin-top: 23px; // @TODO: Vertically middle align
-  font-family: $helveticaNeue;
   font-size: 18px;
 
   @include mobile {
@@ -225,14 +234,14 @@ nav {
 
   a {
     margin-left: 20px;
-    color: $darkGray;
+    color: #aaa;
     text-align: right;
     font-weight: 300;
     letter-spacing: 1px;
 
     @include mobile {
       margin: 0 10px;
-      color: $blue;
+      color: $lightGray;
     }
   }
 }
@@ -242,8 +251,8 @@ nav {
 //
 
 .posts > .post {
-  padding-bottom: 2em;
-  border-bottom: 1px solid $lightGray;
+  padding-bottom: 1em;
+  border-bottom: 1px solid lighten(#00ace9, 35);
 }
 
 .posts > .post:last-child {
@@ -252,35 +261,137 @@ nav {
 }
 
 .post {
+  .entry {
+      font-family: 'Roboto', sans-serif;
+      font-size: 90%;
+
+      > video {
+        background: #000;
+        width: 100%;
+      }
+
+      > h2 {
+        padding-top: 10px;
+        border-bottom: 1px solid rgba(0,0,0,0.1);
+      }
+
+      > h3 {
+        border-bottom: 1px solid rgba(0,0,0,0.05);
+      }
+
+      > h4 {
+        background: rgba($blue, 0.05);
+        border-radius: 2px;
+      }
+
+      a {
+        background: lighten($blue, 47);
+        border-radius: 2px;
+      }
+  }
+
+  img, video {
+    display: block;
+    max-width: 90%;
+    margin: 0 auto;
+    border-radius: 2px;
+    border: 2px dashed rgba(0,0,0,0.08);
+  }
+
+  .title {
+    line-height: 1.7;
+  }
+
+  .date {
+    text-transform: lowercase;
+  }
+
+  > h4 {
+    line-height: 0.4;
+    margin-top: -10px;
+    margin-bottom: 30px;
+    color: #aaa;
+  }
+
   blockquote {
     margin: 1.8em .8em;
-    border-left: 2px solid $gray;
+    border-left: 2px solid #aaa;
     padding: 0.1em 1em;
-    color: $gray;
+    color: #aaa;
     font-size: 22px;
     font-style: italic;
-  }
-
-  .comments {
-    margin-top: 10px;
-  }
-
-  .read-more {
-    text-transform: uppercase;
-    font-size: 15px;
   }
 }
 
 .wrapper-footer {
-  margin-top: 50px;
-  border-top: 1px solid #ddd;
-  border-bottom: 1px solid #ddd;
-  background-color: $lightGray;
+  margin-top: 30px;
+  border-top: 1px solid #d5d5d5;
+  border-bottom: 1px solid #d5d5d5;
+  background-color: #ddd;
 }
 
 footer {
-  padding: 20px 0;
+  padding: 15px 0;
   text-align: center;
+}
+
+.pagination {
+    margin: auto;
+    text-align: center;
+    color: #444;
+}
+
+[data-aspect-ratio] {
+    display: block;
+    max-width: 100%;
+    position: relative;
+
+    &:before {
+        content: '';
+        display: block;
+    }
+
+    > * {
+        display: block;
+        height: 100%;
+        left: 0;
+        position: absolute;
+        top: 0;
+        width: 100%;
+    }
+}
+[data-aspect-ratio="3:1"]:before {
+    padding-top: 33.33%;
+}
+[data-aspect-ratio="2:1"]:before {
+    padding-top: 50%;
+}
+[data-aspect-ratio="16:9"]:before {
+    padding-top: 56.25%;
+}
+[data-aspect-ratio="3:2"]:before {
+    padding-top: 66.66%;
+}
+[data-aspect-ratio="4:3"]:before {
+    padding-top: 75%;
+}
+[data-aspect-ratio="1:1"]:before {
+    padding-top: 100%;
+}
+[data-aspect-ratio="3:4"]:before {
+    padding-top: 133.33%;
+}
+[data-aspect-ratio="2:3"]:before {
+    padding-top: 150%;
+}
+[data-aspect-ratio="9:16"]:before {
+    padding-top: 177.77%;
+}
+[data-aspect-ratio="1:2"]:before {
+    padding-top: 200%;
+}
+[data-aspect-ratio="1:3"]:before {
+    padding-top: 300%;
 }
 
 // Settled on moving the import of syntax highlighting to the bottom of the CSS
