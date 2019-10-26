@@ -11,6 +11,9 @@ description: B.Sc. Computer Science Student @ Universidade de São Paulo
 # URL of your avatar or profile pic (you could use your GitHub profile pic)
 avatar: https://avatars3.githubusercontent.com/u/10405276
 
+paginate: 5
+paginate_path: "/page/:num/"
+
 #
 # Flags below are optional
 #
@@ -18,7 +21,7 @@ avatar: https://avatars3.githubusercontent.com/u/10405276
 # Includes an icon in the footer for each username you enter
 footer-links:
   dribbble:
-  email:
+  email: gabekanegae@gmail.com
   facebook:
   flickr:
   github: kanegaegabriel
@@ -76,6 +79,7 @@ sass:
 gems:
   - jekyll-sitemap # Create a sitemap using the official Jekyll sitemap gem
   - jekyll-feed # Create an Atom feed using the official Jekyll feed gem
+  - jekyll-paginate
 
 # Exclude these files from your production _site
 exclude:
