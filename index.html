@@ -7,7 +7,17 @@ layout: default
     <article class="post">
         <h1 class="title"><a href="{{ site.baseurl }}{{ post.url }}">{{ post.title }}</a></h1>
 
-        <h4 class="date">><date>{{ post.date | date_to_string }}</date></h4>
+        <h4 class="date">> <date>
+            {% assign d = post.date | date: "%-d" %}
+            {{ post.date | date: "%B" }}
+            {% case d %}
+                {% when '1' or '21' or '31' %}{{ d }}st,
+                {% when '2' or '22' %}{{ d }}nd,
+                {% when '3' or '23' %}{{ d }}rd,
+                {% else %}{{ d }}th,
+                {% endcase %}
+            {{ post.date | date: "%Y" }}
+        </date></h4>
 
         <div class="entry">
             {{ post.excerpt }}
@@ -20,9 +30,16 @@ layout: default
 
 <div class="pagination">
     {% if paginator.previous_page %}
-    <a href="{{ paginator.previous_page_path }}" class="previous"><</a> {% else %}
-    <span class="previous>"><</span> {% endif %}
-    <span class="page_number ">{{ paginator.page }} of {{ paginator.total_pages }}</span> {% if paginator.next_page %}
-    <a href="{{ paginator.next_page_path }}" class="next">></a> {% else %}
-    <span class="next">></span> {% endif %}
+    <a href="{{ paginator.previous_page_path }}" class="previous"><</a>
+    {% else %}
+    <span class="previous"><</span>
+    {% endif %}
+    
+    <span class="page_number">{{ paginator.page }} of {{ paginator.total_pages }}</span>
+    
+    {% if paginator.next_page %}
+    <a href="{{ paginator.next_page_path }}" class="next">></a>
+    {% else %}
+    <span class="next">></span>
+    {% endif %}
 </div>

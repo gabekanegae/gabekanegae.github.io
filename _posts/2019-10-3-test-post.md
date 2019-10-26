@@ -6,3 +6,7 @@ title: Test post, please ignore.
 Test text. Hey.
 
 ![]({{site.baseurl}}/images/404.jpg)
+
+<!--more-->
+
+More text.
