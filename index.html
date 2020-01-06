@@ -23,7 +23,9 @@ layout: default
             {{ post.excerpt }}
         </div>
 
+        {% if post.show-more-link %}
         <a href="{{ site.baseurl }}{{ post.url }}" class="read-more">More...</a>
+        {% endif %}
     </article>
     {% endfor %}
 </div>

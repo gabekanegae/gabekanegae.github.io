@@ -18,6 +18,7 @@ avatar: https://avatars3.githubusercontent.com/u/10405276
 paginate: 5
 paginate_path: "/page/:num/"
 
+show-more-link: false
 excerpt_separator: <!--more-->
 
 # Includes an icon in the footer for each username you enter
@@ -35,10 +36,6 @@ footer-links:
   stackoverflow: # your stackoverflow profile, e.g. "users/50476/bart-kiers"
   youtube: # channel/<your_long_string> or user/<user-name>
   googleplus: # anything in your profile username that comes after plus.google.com/
-
-# Enter your Disqus shortname (not your username) to enable commenting on posts
-# You can find your shortname on the Settings page of your Disqus account
-disqus:
 
 # Enter your Google Analytics web tracking code (e.g. UA-2110908-2) to activate tracking
 google_analytics: UA-146670018-1
