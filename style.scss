@@ -27,8 +27,8 @@ body {
 
 .container {
   margin: 0 auto;
-  max-width: 740px;
-  padding: 0 10px;
+  max-width: 900px;
+  padding: 0 5%;
   width: 100%;
 }
 
@@ -45,10 +45,6 @@ h1, h2, h3, h4, h5, h6, .read-more {
     font-size: 16px;
     color: #aaa;
     text-transform: lowercase;
-  }
-
-  @include mobile {
-    line-height: 1.4;
   }
 }
 
@@ -265,6 +261,10 @@ nav {
   border-bottom: none;
 }
 
+.page > .entry {
+  font-size: 90%;
+}
+
 .post {
   .entry {
       font-family: 'Roboto', sans-serif;
@@ -287,11 +287,6 @@ nav {
 
       > h4 {
         background: rgba($blue, 0.05);
-        border-radius: 2px;
-      }
-
-      a {
-        background: lighten($blue, 47);
         border-radius: 2px;
       }
   }
