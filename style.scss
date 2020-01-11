@@ -32,6 +32,10 @@ body {
   width: 100%;
 }
 
+hr {
+  border-top: 1px solid rgba(0,0,0,0.1);
+}
+
 h1, h2, h3, h4, h5, h6, .read-more {
   color: $darkerGray;
   font-family: 'Roboto', sans-serif;
@@ -282,21 +286,20 @@ nav {
       }
 
       > h3 {
-        border-bottom: 1px solid rgba(0,0,0,0.05);
+        border-bottom: 1px solid rgba(0,0,0,0.1);
       }
 
       > h4 {
-        background: rgba($blue, 0.05);
+        background: rgba($blue, 0.1);
         border-radius: 2px;
       }
   }
 
   img, video {
     display: block;
-    max-width: 90%;
     margin: 0 auto;
     border-radius: 2px;
-    border: 2px dashed rgba(0,0,0,0.08);
+    border: 2px dashed rgba(0,0,0,0.1);
   }
 
   .title {
