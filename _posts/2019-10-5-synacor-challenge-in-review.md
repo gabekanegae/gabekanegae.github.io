@@ -8,7 +8,7 @@ show-more-link: true
 
 I've had the **[Synacor Challenge](https://challenge.synacor.com/)** bookmarked for a couple years now, having probably found it somewhere on the [Advent of Code website](https://adventofcode.com) or [subreddit](https://www.reddit.com/r/adventofcode/). Since I'm currently taking a Computer Architecture course and I've been busy for the last couple days building a [MIPS Pipeline Simulator](https://github.com/kanegaegabriel/mips-pipeline-simulator) for it, I figured I would give it a shot.
 
-It started just as a way to spend some free time I had on a friday morning, but as I started unraveling the challenge's surprises, that quickly grew to a whole weekend spent solely on it. All my code is on my **[GitHub](https://github.com/kanegaegabriel/synacor-challenge)**, as well as a full [writeup](https://github.com/kanegaegabriel/synacor-challenge/blob/master/writeup.md), written as I was progressing through the challenge. You can also **keep reading for more info and my spoiler-free comments on it.**
+It started just as a way to spend some free time I had on a friday morning, but as I started unraveling the challenge's surprises, that quickly grew to a whole weekend spent solely on it. All my code is on my **[GitHub](https://github.com/kanegaegabriel/synacor-challenge)**, as well as a full [writeup](https://github.com/kanegaegabriel/synacor-challenge/blob/master/writeup.md), written as I was progressing through the challenge. You can also **keep reading for more info and my spoiler-free comments on it**.
 
 <!--more--> ---
 
