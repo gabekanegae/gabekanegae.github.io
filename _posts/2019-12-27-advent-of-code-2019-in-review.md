@@ -40,7 +40,7 @@ All in all, **I had an amazing time with it and I highly recommend it to anyone 
 
 **Day 16:** Arguably another math puzzle? Maybe half math and half programming. My original code for Part 1 took around two minutes, so Part 2 would finish computing in a couple thousand years! Of course, I had other things to do in that meantime so I ended up getting the trick for Part 2 from the subreddit. Reverse partial sum it was!
 
-**Day 17:** Leaderboard get once again! For Part 2, I winged it and figured it was [faster to do it by hand](https://twitter.com/sophiebits/status/1206816590613733376) than figuring out a compressing algorithm on the fly. Apparently that was the better choice, as I got top 5! Of course, I later figured out the general solution for it.
+**Day 17:** Leaderboard get once again! For Part 2, I winged it and figured it was [faster to do it by hand](https://twitter.com/sophiebits/status/1206816590613733376) than figuring out a compression algorithm on the fly. Apparently that was the better choice, as I got top 5! Of course, I later figured out the general solution for it.
 
 **Day 18:** Pathfinding again, turned up to eleven. After hours of thinking and a couple tips later, my initial solution got me the right answer with a couple minutes of computing. Some [really fun optimization rounds](https://github.com/KanegaeGabriel/advent-of-code-2019/commits/master/day18.py) later, I brought my solution down to a reasonable runtime.
 
