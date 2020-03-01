@@ -131,6 +131,12 @@ img {
   color: #999;
 }
 
+code {
+  font-family: 'Roboto Mono', monospace;
+  font-size: 95%;
+  background-color: #ddd;
+}
+
 // Specify the color of the selection
 ::-moz-selection {
   background: #99cccc;
