@@ -138,11 +138,11 @@ Before we start, be sure to install the [Heroku CLI](https://devcenter.heroku.co
 
 Let's get on it! First, [create a free Heroku account](https://signup.heroku.com/):
 
-![]({{site.baseurl}}/images/heroku-signup.png)
+![]({{site.baseurl}}/images/heroku-signup.jpg)
 
 Then, create a new app and give it whatever name you feel like.
 
-![]({{site.baseurl}}/images/heroku-newapp.png)
+![]({{site.baseurl}}/images/heroku-newapp.jpg)
 
 Now that your app is created, you need to tell Heroku how to start it. For that, in your bot folder alongside your other files, create a blank file named `Procfile`, **with no file extension**. It should contain only the line `worker: python main.py`. Alternatively, simply run:
 {% highlight shell %}
@@ -175,7 +175,7 @@ All that's left is to turn your bot on. In the **Resources tab**, click the edit
 
 Your bot should now be working! Try sending it a command via Telegram! To check your console logs, go on More > View logs:
 
-![]({{site.baseurl}}/images/heroku-logs.png)
+![]({{site.baseurl}}/images/heroku-logs.jpg)
 
 To deploy any additions or changes, commit them via `git` and push. Be sure to add a commit message describing what changed:
 {% highlight shell %}

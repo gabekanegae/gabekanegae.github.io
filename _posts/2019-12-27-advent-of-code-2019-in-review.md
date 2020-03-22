@@ -4,7 +4,7 @@ title: Advent of Code 2019 in Review
 show-more-link: true
 ---
 
-![]({{site.baseurl}}/images/aoc19.png)
+![]({{site.baseurl}}/images/aoc19.jpg)
 
 At last, **[Advent of Code 2019](https://adventofcode.com/2019)** has come to an end! If you are new to it, it's an Advent calendar full of programming puzzles from December 1st all the way to Christmas, made by the amazing [Eric Wastl](http://was.tl/) every year since 2015.
 

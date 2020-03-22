@@ -4,7 +4,7 @@ title: Synacor Challenge in Review
 show-more-link: true
 ---
 
-![]({{site.baseurl}}/images/synacorchallenge.png)
+![]({{site.baseurl}}/images/synacorchallenge.jpg)
 
 I've had the **[Synacor Challenge](https://challenge.synacor.com/)** bookmarked for a couple years now, having probably found it somewhere on the [Advent of Code website](https://adventofcode.com) or [subreddit](https://www.reddit.com/r/adventofcode/). Since I'm currently taking a Computer Architecture course and I've been busy for the last couple days building a [MIPS Pipeline Simulator](https://github.com/kanegaegabriel/mips-pipeline-simulator) for it, I figured I would give it a shot.
 
