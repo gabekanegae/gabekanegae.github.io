@@ -29,7 +29,7 @@ Now, install `virtualenv` via Python's package manager, to create a virtual envi
 pip install virtualenv
 {% endhighlight %}
 
-Inside your directory, create a Python 3 virtual environment. Here, we will be calling it simply `venv`:
+Inside your directory, create a Python 3 virtual environment. Here, I will be calling it simply `venv`:
 {% highlight shell %}
 virtualenv -p python3 venv
 {% endhighlight %}
@@ -108,6 +108,8 @@ Start by sending `/setcommands` to [@BotFather](http://t.me/BotFather), selectin
 random - Generates a random number
 {% endhighlight %}
 
+I also recommend saving the list of commands and descriptions in a text file called something like `BotFather_setcommands.txt`, for reference.
+
 Then, in your `main.py` file, create a new function for the command, with `update` and `context` as arguments:
 {% highlight python %}
 def random(update, context):
@@ -128,4 +130,58 @@ For advanced API features and more detailed instructions, do check out the [Tele
 
 ### 4. Running your bot 24/7
 
-~WIP~
+Having to leave your terminal window open and your computer powered on for your bot to be working can't be the best option, right? Well, if you already know your way through VPS, cloud providers and the like, then just leave it running on your preferred platform. Otherwise, keep on reading.
+
+To leave your chatbot running (almost) all the time, this tutorial will be using **[Heroku](https://www.heroku.com/), a cloud platform as a service (PaaS)** that has a free tier for small personal projects, which should handle a simple bot just fine. It also has a large list of add-ons for databases, logging, testing, and much more. Alongside it, you will also need `git` for a quick and easy deployment method.
+
+Before we start, be sure to install the [Heroku CLI](https://devcenter.heroku.com/articles/heroku-cli) as well as `git` itself, via your distro's package manager or, if on Windows, via the [official website](https://gitforwindows.org/).
+
+Let's get on it! First, [create a free Heroku account](https://signup.heroku.com/):
+
+![]({{site.baseurl}}/images/heroku-signup.png)
+
+Then, create a new app and give it whatever name you feel like.
+
+![]({{site.baseurl}}/images/heroku-newapp.png)
+
+Now that your app is created, you need to tell Heroku how to start it. For that, in your bot folder alongside your other files, create a blank file named `Procfile`, **with no file extension**. It should contain only the line `worker: python main.py`. Alternatively, simply run:
+{% highlight shell %}
+echo "worker: python main.py" > Procfile
+{% endhighlight %}
+
+Also, let's have `git` ignore our `venv` folder, as Heroku will later recreate it for us via the file `requirements.txt` created back in section 0. Same idea as before: blank file named `.gitignore`, containing `venv/`. Or, simply:
+{% highlight shell %}
+echo "venv/" > .gitignore
+{% endhighlight %}
+
+Now, let's upload the bot files to Heroku using the Heroku CLI. This step is also detailed in the **Deploy tab**, "Deploy using Heroku Git" section.
+
+Log in to your account using `heroku login` and following the messages. Then, initialize a `git` repository in your bot folder and link it to your Heroku app, replacing `bot-tutorial` with your Heroku app name:
+{% highlight shell %}
+git init
+heroku git:remote -a bot-tutorial
+{% endhighlight %}
+
+Finally, add your files, commit and push:
+{% highlight shell %}
+git add --all
+git commit -m "Initial commit"
+git push heroku master
+{% endhighlight %}
+
+All that's left is to turn your bot on. In the **Resources tab**, click the edit button, flip the switch and confirm:
+
+![]({{site.baseurl}}/images/heroku-worker.png)
+
+Your bot should now be working! Try sending it a command via Telegram! To check your console logs, go on More > View logs:
+
+![]({{site.baseurl}}/images/heroku-logs.png)
+
+To deploy any additions or changes, commit them via `git` and push. Be sure to add a commit message describing what changed:
+{% highlight shell %}
+git add --all
+git commit -m "Added command /ahoy"
+git push heroku master
+{% endhighlight %}
+
+And you should be all set! Thanks for following along, and I hope you enjoy your new creation!
