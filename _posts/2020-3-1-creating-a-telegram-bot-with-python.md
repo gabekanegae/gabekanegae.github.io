@@ -4,7 +4,9 @@ title: Creating a Telegram Bot with Python
 show-more-link: true
 ---
 
-Hey! This is a step-by-step guide on creating a **[Telegram Bot](https://core.telegram.org/bots)** in a couple minutes! This tutorial will be using the **[python-telegram-bot](https://python-telegram-bot.org/)** wrapper and **[Heroku](https://www.heroku.com/)** to host it 24/7.
+Hey! This is a step-by-step guide on creating a **[Telegram Bot](https://core.telegram.org/bots)** in a couple minutes!
+
+This tutorial will be using the **[python-telegram-bot](https://python-telegram-bot.org/)** wrapper and **[Heroku](https://www.heroku.com/)** to host it 24/7.
 
 <!--more--> ---
 
@@ -134,7 +136,7 @@ Having to leave your terminal window open and your computer powered on for your 
 
 To leave your chatbot running (almost) all the time, this tutorial will be using **[Heroku](https://www.heroku.com/), a cloud platform as a service (PaaS)** that has a free tier for small personal projects, which should handle a simple bot just fine. It also has a large list of add-ons for databases, logging, testing, and much more. Alongside it, you will also need `git` for a quick and easy deployment method.
 
-Before we start, be sure to install the [Heroku CLI](https://devcenter.heroku.com/articles/heroku-cli) as well as `git` itself, via your distro's package manager or, if on Windows, via the [official website](https://gitforwindows.org/).
+Before we start, be sure to install the [Heroku CLI](https://devcenter.heroku.com/articles/heroku-cli#download-and-install) as well as `git` itself, via your distro's package manager or, if on Windows, via the [official website](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git).
 
 Let's get on it! First, [create a free Heroku account](https://signup.heroku.com/):
 
