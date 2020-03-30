@@ -4,6 +4,8 @@ title: Creating a Telegram Bot with Python
 show-more-link: true
 ---
 
+![]({{site.baseurl}}/images/telegram-bot-python.jpg)
+
 Hey! This is a step-by-step guide on creating a **[Telegram Bot](https://core.telegram.org/bots)** in a couple minutes!
 
 This tutorial will be using the **[python-telegram-bot](https://python-telegram-bot.org/)** wrapper and **[Heroku](https://www.heroku.com/)** to host it 24/7.
@@ -144,7 +146,7 @@ Let's get on it! First, [create a free Heroku account](https://signup.heroku.com
 
 Then, create a new app and give it whatever name you feel like.
 
-![]({{site.baseurl}}/images/heroku-newapp.jpg)
+![]({{site.baseurl}}/images/heroku-newapp.png)
 
 Now that your app is created, you need to tell Heroku how to start it. For that, in your bot folder alongside your other files, create a blank file named `Procfile`, **with no file extension**. It should contain only the line `worker: python main.py`. Alternatively, simply run:
 {% highlight shell %}
@@ -177,7 +179,7 @@ All that's left is to turn your bot on. In the **Resources tab**, click the edit
 
 Your bot should now be working! Try sending it a command via Telegram! To check your console logs, go on More > View logs:
 
-![]({{site.baseurl}}/images/heroku-logs.jpg)
+![]({{site.baseurl}}/images/heroku-logs.png)
 
 To deploy any additions or changes, commit them via `git` and push. Be sure to add a commit message describing what changed:
 {% highlight shell %}
