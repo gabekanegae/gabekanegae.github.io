@@ -71,7 +71,7 @@ TOKEN = ""
 
 def start(update, context):
     s = "hello, world!"
-    context.bot.send_message(chat_id=update.effective_chat.id, text=s)
+    update.message.reply_text(s)
 
 def main():
     logger = logging.getLogger(__name__)
@@ -120,7 +120,7 @@ def random(update, context):
     random = int(((192*39)/48+15)/855*20)
     s = "Your totally random number is {}. :)".format(random)
 
-    context.bot.send_message(chat_id=update.effective_chat.id, text=s)
+    update.message.reply_text(s)
 {% endhighlight %}
 
 Finally, add the corresponding `CommandHandler` right after line 18:
