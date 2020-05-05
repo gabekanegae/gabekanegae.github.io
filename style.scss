@@ -40,7 +40,7 @@ h1, h2, h3, h4, h5, h6, .read-more {
   color: $darkerGray;
   font-family: 'Roboto', sans-serif;
 
-  line-height: 1.7;
+  line-height: 1.4;
   margin: 1em 0 15px;
   padding: 0;
 
@@ -275,29 +275,52 @@ nav {
 }
 
 .post {
+  .title, > h1 {
+    line-height: 1.4;
+    text-align: left;
+  }
+
   .entry {
-      font-family: 'Roboto', sans-serif;
-      font-size: 90%;
-      text-align: justify;
+    font-family: 'Roboto', sans-serif;
+    font-size: 90%;
+    text-align: justify;
 
-      > video {
-        background: #000;
-        width: 100%;
-      }
+    > video {
+      background: #000;
+      width: 100%;
+    }
 
-      > h2 {
-        padding-top: 10px;
-        border-bottom: 1px solid rgba(0,0,0,0.1);
-      }
+    > h2 {
+      padding-top: 10px;
+      line-height: 1.4;
+      text-align: left;
+      border-bottom: 1px solid rgba(0,0,0,0.1);
+    }
 
-      > h3 {
-        border-bottom: 1px solid rgba(0,0,0,0.1);
-      }
+    > h3 {
+      line-height: 1.4;
+      text-align: left;
+      border-bottom: 1px solid rgba(0,0,0,0.1);
+    }
 
-      > h4 {
-        background: rgba($blue, 0.1);
-        border-radius: 2px;
-      }
+    > h4 {
+      background: rgba($blue, 0.1);
+      border-radius: 2px;
+    }
+  }
+
+  > h4 {
+    line-height: 0.4;
+    margin-bottom: 30px;
+  }
+
+  blockquote {
+    margin: 1.8em .8em;
+    border-left: 2px solid #aaa;
+    padding: 0.1em 1em;
+    color: #aaa;
+    font-size: 22px;
+    font-style: italic;
   }
 
   img, video {
@@ -319,25 +342,6 @@ nav {
     position: absolute;
     width: 100%;
     height: 100%;
-  }
-
-  .title {
-    line-height: 1.7;
-  }
-
-  > h4 {
-    line-height: 0.4;
-    margin-top: -10px;
-    margin-bottom: 30px;
-  }
-
-  blockquote {
-    margin: 1.8em .8em;
-    border-left: 2px solid #aaa;
-    padding: 0.1em 1em;
-    color: #aaa;
-    font-size: 22px;
-    font-style: italic;
   }
 }
 
