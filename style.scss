@@ -48,7 +48,6 @@ h1, h2, h3, h4, h5, h6, .read-more {
     font-style: normal;
     font-size: 16px;
     color: #aaa;
-    text-transform: lowercase;
   }
 }
 
@@ -306,6 +305,20 @@ nav {
     margin: 0 auto;
     border-radius: 2px;
     border: 2px dashed rgba(0,0,0,0.1);
+  }
+
+  // https://silvercircle.github.io/2017/10/10/embed-youtube-jekyll/
+
+  div.ytcontainer {
+    position: relative;
+    width: 100%;
+    padding-bottom: 56.25%; // 9/16
+  }
+
+  iframe.yt {
+    position: absolute;
+    width: 100%;
+    height: 100%;
   }
 
   .title {
