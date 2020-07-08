@@ -150,12 +150,12 @@ Then, create a new app and give it whatever name you feel like.
 
 Now that your app is created, you need to tell Heroku how to start it. For that, in your bot folder alongside your other files, create a blank file named `Procfile`, **with no file extension**. It should contain only the line `worker: python main.py`. Alternatively, simply run:
 {% highlight shell %}
-echo "worker: python main.py" > Procfile
+echo worker: python main.py > Procfile
 {% endhighlight %}
 
 Also, let's have `git` ignore our `venv` folder, as Heroku will later recreate it for us via the file `requirements.txt` created back in section 0. Same idea as before: blank file named `.gitignore`, containing `venv/`. Or, simply:
 {% highlight shell %}
-echo "venv/" > .gitignore
+echo venv/ > .gitignore
 {% endhighlight %}
 
 Now, let's upload the bot files to Heroku using the Heroku CLI. This step is also detailed in the **Deploy tab**, "Deploy using Heroku Git" section.
