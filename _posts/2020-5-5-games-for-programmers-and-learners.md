@@ -28,19 +28,19 @@ The art style follows the same recipe as the other games from Tomorrow Corporati
 
 ### [Zachtronics](http://www.zachtronics.com/) Games
 
-Any list of programming games has to contain at least one of Zachtronics' amazing titles. I do encourage you to check out all of them, but I'll be listing my two favorite ones here. Probably the most 'serious' games on this list coding-wise, most of them require you to actually study stuff - actual PDFs in the game files detailing some computer architecture and its language syntax - so you are able to progress through the first level, and later ones can be a challenge to even veteran programmers. They all mostly follow the same recipe, with some spice added to it: learn a new Assembly language; write programs with it that do cool stuff; optimize it as much as you feel like it; share your solution with friends. Also, [RTFM](http://www.readthefuckingmanual.com/).
+Any list of programming games has to contain at least one of Zachtronics' amazing titles. I do encourage you to check out all of them, but I'll be listing my two favorite ones here. Probably the most "serious" games on this list coding-wise, most of them require you to actually study - PDF manuals in the game files detailing some computer architecture and its language syntax - so you are able to progress through the first level, and later ones can be a challenge to even veteran programmers. They all mostly follow the same recipe, with some spice added to it: learn a new Assembly language; write programs with it that do cool stuff; optimize it as much as you feel like it; share your solution with friends. Also, [RTFM](http://www.readthefuckingmanual.com/).
 
-**[Exapunks](https://store.steampowered.com/app/716490/) is about hacking stuff to earn money so you're able to buy medicine and survive.** You write code to control EXecution Agents, the EXAs: small robots that are able to get into networks - and even your own body -, and fulfill contracts to "improve" candy production from the nearby factory, change someone's bank balance or hijack a highway digital billboard to show neat stuff. Be ready to dive deep into magazines from the 90's detailing secret functionalities and specific language syntax. Probably the easiest of the Zachtronics collection, so a great one to start with.
+**[Exapunks](https://store.steampowered.com/app/716490/) is about hacking stuff to earn money so you're able to buy medicine and survive.** You write code to control EXecution Agents, the EXAs: small robots that are able to get into networks - and even your own body -, and fulfill contracts to "improve" candy production from the nearby factory, change someone's bank account balance or hijack a highway digital billboard to show neat stuff. Be ready to dive deep into magazines from the 90's detailing secret functionalities and specific language syntax. Arguably the easiest of the Zachtronics collection, so a great one to start with.
 
 {% include youtube.html id="_rOIUUVFRKc" %}
 
-**[TIS-100](https://store.steampowered.com/app/370360/) tasks you with powering up your deceased uncle's old computer**, the Tesselated Intelligence System, a "massively parallel computer architecture comprised of non-uniformly interconnected heterogeneous nodes". Fancy. Write small snippets of Assembly code into separate CPUs that communicate only to the ones adjacent to it. Learn about blocking and non-blocking operations and many other parallel programming quirks, and figure out the machine's secrets while you're at it.
+**[TIS-100](https://store.steampowered.com/app/370360/) tasks you with powering up your deceased uncle's old computer**, the Tesselated Intelligence System, a "massively parallel computer architecture comprised of non-uniformly interconnected heterogeneous nodes". Fancy. Write small snippets of Assembly code into separate CPUs that are able to communicate only with the ones adjacent to it. Learn about blocking and non-blocking operations and many other parallel programming quirks, and figure out the machine's secrets while you're at it.
 
 {% include youtube.html id="ZkUHGvy2pNU" %}
 
 ### [Hacknet](https://store.steampowered.com/app/365450/)
 
-A spiritual successor to 2001's [Uplink](https://store.steampowered.com/app/1510/), **Hacknet is at its core a hacking simulator.** Of course, it's quite far from the reality of real pentesters and infosec experts, but it does have some roots on real UNIX commands, ports, firewalls and networks.
+A spiritual successor to 2001's [Uplink](https://store.steampowered.com/app/1510/), **Hacknet is at its core a hacking simulator**. Of course, it's quite far from the reality of real pentesters and infosec experts, but it does have some roots on real UNIX commands, ports, firewalls and networks.
 
 {% include youtube.html id="A-jN16bNPhk" %}
 
@@ -56,15 +56,15 @@ The best way to describe this game in one sentence is that it is the closest thi
 
 {% include youtube.html id="J8SBp4SyvLc" %}
 
-So, where's the coding? Factorio's [circuit network](https://wiki.factorio.com/Circuit_network) is Turing complete, much like Minecraft's classic redstone mechanics, and people are able to do [crazy stuff](https://www.youtube.com/watch?v=7lVAFcDX4eM) with it, but that's not the reason for its inclusion on this list. The main game mechanic and goals have a lot in common with real-world programming: you have to plan before you build (code?), and you better modularize it. Otherwise, technical (construction?) debt is real - although, surprisingly enough, tearing down all the work done in the past few hours and rebuilding it, now bigger and better, is way more fun than it sounds. Not coincidentally, the Venn diagram between Factorio players and programmers is pretty much a single circle.
+So, where's the coding? Factorio's [circuit network](https://wiki.factorio.com/Circuit_network) is Turing complete, much like Minecraft's classic redstone mechanics, and people are able to do [crazy stuff](https://www.youtube.com/watch?v=7lVAFcDX4eM) with it, but that's not the reason for its inclusion on this list. The main game mechanic and goals have a lot in common with real-world programming: you have to plan before you build (code?), and you better modularize it. Otherwise, technical (construction?) debt is real - although, surprisingly enough, tearing down all the work done in the past few hours and rebuilding it, now bigger and better, is way more fun than it sounds. Not coincidentally, the intersection between Factorio players and programmers is fairly big.
 
-As you may imagine, the learning curve is pretty steep (isn't that true for most of the games here, though?), but learning the basics by yourself is absolutely worth it. Once you get into the "just one more thing and I'm done" loop, you're set.
+As you may imagine, the learning curve is pretty steep (isn't that true for most of the games here, though?), but learning the basics by yourself instead of watching a bunch of tutorials is absolutely worth it. Once you get into the "just one more thing and I'm done" loop, you're set.
 
-The game is still in Early Access (**Update Aug. 14, 2020: it's not anymore! Trailer above updated as well.**), but don't be fooled by it: Factorio is one of those rare exceptions where that is a big plus instead of an excuse. Also, the dev team maintains a [development blog](https://factorio.com/blog/) with weekly updates, often diving deep into technical details. A favorite of mine is [FFF #317](https://factorio.com/blog/post/fff-317), which explains in detail the enemies' pathfinding algorithm.
+The game is still in Early Access **(Update Aug. 14, 2020: Not anymore! Trailer above updated as well.)**, but don't be fooled by it: Factorio is one of those rare exceptions where that is a big plus instead of an excuse. Also, the dev team maintains a [development blog](https://factorio.com/blog/) with weekly updates, often diving deep into technical details. A favorite of mine is [FFF #317](https://factorio.com/blog/post/fff-317), which explains in detail the enemies' pathfinding algorithm.
 
 You have been warned: it's crazy addicting, and the replayability is insane. The factory must grow.
 
-### [Satisfactory](https://www.epicgames.com/store/product/satisfactory)
+### [Satisfactory](https://store.steampowered.com/agecheck/app/526870/)
 
 Being the most recent title in this list, **Satisfactory is, in a nutshell, a 3D Factorio**. Still in Early Access (like, real early) and so it lacks many features that would make it deep, but the environments, buildings and creatures are gorgeous and the developer's community engagement is great. As it's 3D, it does require a beefier computer than any other game listed here, limiting the factory complexity to a way lower degree compared to Factorio (unless you are [this guy](https://www.youtube.com/watch?v=Oh2oF-eZTD8)). Satisfactory is already a beautiful and fun game and does look very promising. I will be sure to take a second look at it in a few updates.
 
@@ -72,7 +72,7 @@ Being the most recent title in this list, **Satisfactory is, in a nutshell, a 3D
 
 ### Programming Games Backlog
 
-Those are the ones that I haven't immersed myself in enough yet to write a paragraph of opinion about it, but are right at the top of my big backlog of games that I want to get through. They are full of positive reviews all around the internet and so I felt like listing them here.
+Those are the ones that I haven't immersed myself in enough yet to write a paragraph of opinion about it, but are right at the top of my big backlog of games that I want to get through. They are full of positive reviews all around the internet and so I felt like listing them here as well.
 
 **[Else Heart.Break()](https://store.steampowered.com/app/400110/)**: a mix of RPG, open-world and point-and-click adventure, with a story of love and friendship behind the programming curtain.
 
