@@ -4,7 +4,7 @@ title: Games for Programmers (and Learners)
 show-more-link: true
 ---
 
-![]({{site.baseurl}}/images/games-for-programmers.jpg)
+![]({{site.baseurl}}/images/games-for-programmers-and-learners/header.jpg)
 
 Games taught me all sorts of things: time management, fast typing, interpersonal skills, dealing with money and economy in general, and even how to read and write. Since I found out how exciting coding was, I turned my attention to the ones that can actually teach programming - and are still fun. Turns out solving puzzles using a made-up programming language inside a video game is as satisfying as solving a real coding challenge in a real environment, and best of all: the skills are transferable!
 
