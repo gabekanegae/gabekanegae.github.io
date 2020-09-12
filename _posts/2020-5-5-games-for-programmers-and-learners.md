@@ -54,13 +54,13 @@ The best way to describe this game in one sentence is that it is the closest thi
 
 **Factorio is a game about automation and logistics.** Start small, stranded in a foreign planet with not much more than a pickaxe, a gun, and determination to build a rocket and launch a satellite. Then, craft resources by hand and build machines that can do the crafting for you. Design factories with increasingly complex parts and recipes, avoiding bottlenecks and maximizing output, all while controlling power consumption and protecting your base from alien attacks. Also, nuclear power. Also, [trains](https://www.youtube.com/watch?v=hHkKJfcBXcw).
 
-{% include youtube.html id="DR01YdFtWFI" %}
+{% include youtube.html id="J8SBp4SyvLc" %}
 
 So, where's the coding? Factorio's [circuit network](https://wiki.factorio.com/Circuit_network) is Turing complete, much like Minecraft's classic redstone mechanics, and people are able to do [crazy stuff](https://www.youtube.com/watch?v=7lVAFcDX4eM) with it, but that's not the reason for its inclusion on this list. The main game mechanic and goals have a lot in common with real-world programming: you have to plan before you build (code?), and you better modularize it. Otherwise, technical (construction?) debt is real - although, surprisingly enough, tearing down all the work done in the past few hours and rebuilding it, now bigger and better, is way more fun than it sounds. Not coincidentally, the Venn diagram between Factorio players and programmers is pretty much a single circle.
 
 As you may imagine, the learning curve is pretty steep (isn't that true for most of the games here, though?), but learning the basics by yourself is absolutely worth it. Once you get into the "just one more thing and I'm done" loop, you're set.
 
-The game is still in Early Access, but don't be fooled by it: Factorio is one of those rare exceptions where that is a big plus instead of an excuse. Also, the dev team maintains a [development blog](https://factorio.com/blog/) with weekly updates, often diving deep into technical details. A favorite of mine is [FFF #317](https://factorio.com/blog/post/fff-317), which explains in detail the enemies pathfinding algorithm.
+The game is still in Early Access (**Update Aug. 14, 2020: it's not anymore! Trailer above updated as well.**), but don't be fooled by it: Factorio is one of those rare exceptions where that is a big plus instead of an excuse. Also, the dev team maintains a [development blog](https://factorio.com/blog/) with weekly updates, often diving deep into technical details. A favorite of mine is [FFF #317](https://factorio.com/blog/post/fff-317), which explains in detail the enemies' pathfinding algorithm.
 
 You have been warned: it's crazy addicting, and the replayability is insane. The factory must grow.
 
