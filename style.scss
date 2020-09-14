@@ -286,11 +286,6 @@ nav {
     font-size: 90%;
     text-align: justify;
 
-    > video {
-      background: #000;
-      width: 100%;
-    }
-
     > h2 {
       padding-top: 10px;
       line-height: 1.4;
@@ -325,10 +320,12 @@ nav {
   }
 
   img, video {
+    width: 100%;
     display: block;
     margin: 0 auto;
     border-radius: 2px;
     border: 2px dashed rgba(0,0,0,0.1);
+    outline: none;
   }
 
   // https://silvercircle.github.io/2017/10/10/embed-youtube-jekyll/
