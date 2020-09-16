@@ -3,6 +3,7 @@ drafts
 .DS_Store
 .jekyll
 .jekyll-metadata
+.jekyll-cache
 .bundle
 .sass-cache
 Gemfile
