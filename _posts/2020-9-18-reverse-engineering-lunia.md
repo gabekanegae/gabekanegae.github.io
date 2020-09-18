@@ -10,9 +10,9 @@ show-more-link: true
 
 **I started playing Lunia sometime in 2009**, and it was what taught me fast typing, introduced me to online forums and communities, and gracefully presented me the world of MMOs in general. The game was the biggest time-sink of young me until late 2012, when the Brazilian servers shut down. Sadly, the global servers followed suit just a year after. It's fair to say it was far from being the largest MMO at the time, but to 9-year-old me, it was golden.
 
-Recently, I stumbled upon some screenshots buried deep in my file archives. After a couple days of reminiscing old times in some unofficial servers that are still around - and realizing the game aged surprisingly well (although it might be just my nostalgia talking) - **I decided to use the skills that I learned since then to snoop around the game files, maybe learning some cool stuff along the way. As it turns out, that was quite successful and exceedingly fun, so here's a quite lengthy rundown of my journey.**
+Recently, I stumbled upon some screenshots buried deep in my file archives. After a couple days of reminiscing old times in some unofficial servers that are still around - and realizing the game aged surprisingly well (although it might be just my nostalgia talking) - **I decided to use the skills that I acquired since then to snoop around the game files, maybe learning some cool stuff along the way. As it turns out, that was quite successful and exceedingly fun, so here's a quite lengthy rundown of my journey.**
 
-I probably spent around a hundred hours in the last month or so to get up to this point, and **it is still very much a work in progress**. Many of the game files are still hidden or unexplored, and there's a bunch that I still plan to do with the extracted assets. With that, I may or may not update this post (or write follow-ups) in the near future.
+I probably spent over a hundred hours in the last month to get up to this point, and **it is still very much a work in progress**. Many of the game files are still hidden or unexplored, and there's a bunch that I still plan to do with the extracted assets. With that, I may update this post (or write follow-ups) in the near future if I do so.
 
 <!--more--> ---
 
@@ -26,7 +26,7 @@ Based on both points above, **this is not supposed to be a guide**. This is more
 
 Additionally, **this is not an incentive or recommendation for you to play on an unofficial server**. I won't be giving any pointers on how to access them, but, again, the information is easily available online if you search for it. However, as Lunia is still "active", from now on I will be talking about it in the present tense. Do be aware that, officially, the game servers - and, being an MMO, the game itself - are unavailable.
 
-Finally, all of this was done solely for educational purposes. There is absolutely no intention of breaking copyright or redistributing any proprietary files, nor disrupting any active services. This is a writeup of a technical exploration fueled by curiosity, passion and nostalgia.
+Finally, **all of this was done solely for educational purposes**. There is absolutely no intention of breaking copyright or redistributing any proprietary files, nor disrupting any active services. This is a writeup of a technical exploration fueled by curiosity, passion and nostalgia.
 
 ### 1. What is Lunia?
 
@@ -352,9 +352,9 @@ The `.SkinnedAnim`s were still left untouched, for now. I did take a look at the
 
 I got my hands on a huge collection of files, along with tutorials on how to fire up a server, as well as the source code itself. I supposed all of that were leaked, somehow? This was mostly a general exploration, as an attempt to better understand the architecture and find the data tables and such.
 
-Lunia's servers ran on [ASP](https://en.wikipedia.org/wiki/Active_Server_Pages), [IIS](https://en.wikipedia.org/wiki/Internet_Information_Services) and [MSSQL](https://en.wikipedia.org/wiki/Microsoft_SQL_Server), all running in Windows Server 2003. It's interesting to note that it appears each square was a single server instance, and each chat channel was an independent IRC-based server also. The technologies used was ancient - admittedly, once again, there were no big standards for MMO development at the time - and most of the files I had were far from complete or even functional, and so I have to admit I wasn't much interested in trying to set up my own server. After snooping around for some minutes, I turned my attention to the real interesting stuff: the game source code and development files.
+**Lunia's servers ran on [ASP](https://en.wikipedia.org/wiki/Active_Server_Pages), [IIS](https://en.wikipedia.org/wiki/Internet_Information_Services) and [MSSQL](https://en.wikipedia.org/wiki/Microsoft_SQL_Server), all running in Windows Server 2003.** It's interesting to note that it appears each square was a single server instance, and each chat channel was an independent IRC-based server also. The technologies used were ancient compared to the ones available today - admittedly, once again, there were no big standards for MMO development at the time - and most of the files I had were far from complete or even functional, and so I have to admit I wasn't much interested in trying to set up my own server. After snooping around for some minutes, I turned my attention to the real interesting stuff: the game source code and development files.
 
-Lunia was built on Visual C++, and seemed to have grown alongside its own custom engine, "XRated". With it, there were dozens of custom tools to create and edit items, quests, pets, chests, and so on. A lot of code had the purpose of converting to and from those pesky custom file formats, and so they are probably very helpful on reverse engineering them.
+**Lunia itself was built on Visual C++**, and seemed to have grown alongside its own custom engine, "XRated". With it, there were dozens of custom tools to create and edit items, quests, pets, chests, and so on. A lot of code had the purpose of converting to and from those pesky custom file formats, and so they are probably very helpful on reverse engineering them.
 
 All the "compiled" files found earlier in the client data could also be found here, like the `.tga` files that eventually generated all `.dds` 2D assets, all the `.xml` that eventually became the `.b` databases, and the uncompiled `.fx` shader code that were loaded in the client as compiled `.fxc`.
 
@@ -371,10 +371,10 @@ The code documentation was... rough, to say the least. Lots of comments were in 
 
 ![]({{site.baseurl}}/images/reverse-engineering-lunia/source-code-1.png)
 
-Of course, there was also all the code for the graphics rendering, like the one above. Most of them were also authored by `juhnu`, the same name found earlier. I managed to find the code responsible for loading the 3D model files mentioned in the last section, and some of my assumptions were confirmed, while others were corrected.
+Of course, **there was also all the code for the graphics rendering**, like the one above. Most of them were also authored by `juhnu`, the same name found earlier. I managed to find the code responsible for loading the 3D model files mentioned in the last section, and some of my assumptions were confirmed, while others were corrected.
 
 * The last section of the `.SkinnedMesh` files are, per the code that handles it, "skin weights". Not sure what to use them for, but oh well.
-* `.Skeleton`s are indeed composed of a header, a list of bone names, a bone hierarchy and a reference pose. A bone `struct` is composed of a `float3 position`, `float3 scale` and `floatquat orientation`. Would the latter be a [quaternion](https://www.youtube.com/watch?v=d4EgbgTm0Bg)? Interesting...
+* `.Skeleton`s are indeed composed of a header, a list of bone names, a bone hierarchy and a reference pose. **A bone `struct` is composed of a `float3 position`, `float3 scale` and `floatquat orientation`.** Would the latter be a [quaternion](https://www.youtube.com/watch?v=d4EgbgTm0Bg)? Interesting...
 * `.SkinnedAnim`s are made of starting and ending frames, a speed modifier, a list of frames, a list of bones, a frame interval and a frame rate. The animation code does give more hints on how to decompose the files.
 
 ![]({{site.baseurl}}/images/reverse-engineering-lunia/source-code-2.png)
@@ -405,7 +405,7 @@ With regards to the **3D assets**, I may continue to work on them by:
 
 At last, about the **server files and source code**:
 
-* Finish reading everything and investigating every single file, and see what data tables I find, as well as what logic I can replicate.
+* Finish reading everything and investigating every single file, and see what else I can find, as well as what logic I can replicate.
 
 And... whatever else might pop in my head during all of that.
 
