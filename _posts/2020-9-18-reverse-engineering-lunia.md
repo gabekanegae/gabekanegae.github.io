@@ -12,7 +12,7 @@ show-more-link: true
 
 Recently, I stumbled upon some screenshots buried deep in my file archives. After a couple days of reminiscing old times in some unofficial servers that are still around - and realizing the game aged surprisingly well (although it might be just my nostalgia talking) - **I decided to use the skills that I acquired since then to snoop around the game files, maybe learning some cool stuff along the way. As it turns out, that was quite successful and exceedingly fun, so here's a quite lengthy rundown of my journey.**
 
-I probably spent over a hundred hours in the last month to get up to this point, and **it is still very much a work in progress**. Many of the game files are still hidden or unexplored, and there's a bunch that I still plan to do with the extracted assets. With that, I may update this post (or write follow-ups) in the near future if I do so.
+I probably spent over 150 hours in the last month to get up to this point, and **it is still very much a work in progress**. Many of the game files are still hidden or unexplored, and there's a bunch that I still plan to do with the extracted assets. With that, I may update this post (or write follow-ups) in the near future if I do so.
 
 <!--more--> ---
 
@@ -44,7 +44,7 @@ Just so you can follow along when I use any game-specific terms, here's a brief 
 * **History (Level 1-70):** The game launched with only 3 episodes of 10 stages each, consisting of the main storyline. Later, it was gradually expanded to 7 episodes.
 * **Legend (Level 30-70):** Legend has the same first 6 episodes from History, with increased difficulty.
 * **Bonus (Level 65+):** Consists of 3 episodes with 7, 7, and 3 stages each, respectively. Longer levels with a big difficulty spike, hard to clear them by yourself. Gives some quite cool items and item sets. Each episode has a different theme and storyline.
-* **Myth (Level 70+):** Unlocks only after a rebirth. Has 6 stages and a somewhat long questline to unlock each of them. Gives exclusive item sets that can only be used on Myth/Devildom stages. Group content, not intended to be solo'd.
+* **Myth (Level 70+):** Unlocks only after a rebirth. Has 6 stages and a somewhat long questline to unlock each of them. Gives exclusive item sets that can only be used in Myth/Devildom stages. Group content, not intended to be solo'd.
 * **Devildom (Level 80+):** Introduced very late into the game's life, also requires a rebirth, and... I don't know or remember that much, actually. Never reached that when I was little, and didn't bother to play that much in unofficial servers.
 
 ![]({{site.baseurl}}/images/reverse-engineering-lunia/character-selection.jpg)
@@ -71,7 +71,7 @@ Initially, what I had to play around with were the game client files. I managed 
 
 ![]({{site.baseurl}}/images/reverse-engineering-lunia/folder-root.png)
 
-Together with the obvious game executables and cursor icons, most of the files at the root were configuration files. Key bindings, player preferences and graphics options, all stored in `.xml` text files with a bunch of comments in Korean. **A few `.dll`s that grabbed my attention were [`FlashPlayer.dll`](https://en.wikipedia.org/wiki/Adobe_Flash), [`lua50.dll and tolua++.dll`](https://en.wikipedia.org/wiki/Lua_(programming_language)), [`LZMA.dll`](https://en.wikipedia.org/wiki/Lempel%E2%80%93Ziv%E2%80%93Markov_chain_algorithm), and half a dozen with  "[`CEGUI`](https://en.wikipedia.org/wiki/CEGUI)" on the filename.**
+Together with the obvious game executables and cursor icons, most of the files at the root were configuration files. Key bindings, player preferences and graphics options, all stored in `.xml` text files with a bunch of comments in Korean. **A few `.dll`s that grabbed my attention were [`FlashPlayer.dll`](https://en.wikipedia.org/wiki/Adobe_Flash), [`lua50.dll and tolua++.dll`](https://en.wikipedia.org/wiki/Lua_(programming_language)), [`LZMA.dll`](https://en.wikipedia.org/wiki/Lempel%E2%80%93Ziv%E2%80%93Markov_chain_algorithm), and half a dozen with  "[`CEGUI`](https://en.wikipedia.org/wiki/CEGUI)" in the filename.**
 
 The `Cinema/` and `Flash/` directories contained hundreds of `.swf` files that can be viewed with something like [SWF File Player](http://www.swffileplayer.com/). Those are all **Flash animations that are extensively used throughout the game**. Alongside some of them, there were also a few sprites in the [`.dds`](https://en.wikipedia.org/wiki/DirectDraw_Surface) format. `Sounds/` had a hundred `.ogg` and `.wav` sound files, which were **the game's main theme songs, a bunch of background music and general ambiance SFX**. It also contained files `Sounds.cfp` and `Sounds.cpv`, extensions that I had never seen before.
 
@@ -112,15 +112,15 @@ At this point, after some days of exploring all files and reading most of them f
 
 ### 3. Playing with UI
 
-It had been a few years since I had [last made a project with a graphical interface](https://github.com/kanegaegabriel/battleships). With the spark of motivation from having those thousands of 32x32 icons in hand, I felt like **coding a clone of Lunia's inventory window**. Here it is, in-game:
+It had been a few years since I had last made [a project with a graphical interface](https://github.com/kanegaegabriel/battleships). With the spark of motivation from having those thousands of 32x32 icons in hand, I felt like **coding a clone of Lunia's inventory window**. Here it is, in-game:
 
 ![]({{site.baseurl}}/images/reverse-engineering-lunia/game-inventory.jpg)
 
 Although I'm almost completely sure Python is not the greatest tool for that, it is the one I am most comfortable with, so **I chose [Pygame](https://www.pygame.org/wiki/GettingStarted) as the graphical library**. I had tried to use it a couple times in the past, but never managed to build anything that looked polished enough, probably for the lack of general programming experience at the time.
 
-One common misconception is that Pygame is a game engine. It's actually way lower level than that: **Pygame is a set of Python modules built on top of [SDL](http://www.libsdl.org/)**, but, for my specific use case, it served mostly as a simple library that allowed me to draw images on certain positions a bunch of times a second. And having to write code to make higher-level functions out of that is exactly my cup of tea.
+One common misconception is that Pygame is a game engine. It's actually way lower level than that: **Pygame is a set of Python modules built on top of [SDL](http://www.libsdl.org/)**, but, for my specific use case, it served mostly as a simple library that allowed me to draw images at certain positions a bunch of times a second. And having to write code to make higher-level functions out of that is exactly my cup of tea.
 
-I first started taking screenshots of Lunia's inventory and modifying pixels here and there, like expanding the inventory slots to a single 8x8 grid instead of 7 separate 5x4 bags, simplifying the equipment tabs to only one and removing the currency altogether. After a while of getting a feel for Pygame, **I managed to make the item icons draggable, have them snap to the actual inventory slots, draw that cute hover effect and have a solid back-end for all of that: well-thought-out data structures to store inventory and item properties**. It was at this point I realized I needed a big refresher on some Object-Oriented Programming concepts, which led me to one of [Raymond Hettinger's talks](https://youtu.be/HTLu2DFOdTg) - Hettinger has done excellent work as a Python Core Developer, and if you consider yourself an intermediate Python developer, I highly recommend watching [all of his talks](https://www.youtube.com/playlist?list=PLRVdut2KPAguz3xcd22i_o_onnmDKj3MA), which was exactly what I did in the days that followed: binge-watched them as if they were a Netflix show.
+I first started taking screenshots of Lunia's inventory and modifying pixels here and there, like expanding the item slots to a single 8x8 grid instead of 7 separate 5x4 bags, simplifying the equipment tabs to only one and removing the currency altogether. After a while of getting a feel for Pygame, **I managed to make the item icons draggable, have them snap to the actual slots, draw that cute hover effect and have a solid back-end for all of that: well-thought-out data structures to store inventory and item properties**. It was at this point I realized I needed a big refresher on some Object-Oriented Programming concepts, which led me to one of [Raymond Hettinger's talks](https://youtu.be/HTLu2DFOdTg) - Hettinger has done excellent work as a Python Core Developer, and if you consider yourself an intermediate Python developer, I highly recommend watching [all of his talks](https://www.youtube.com/playlist?list=PLRVdut2KPAguz3xcd22i_o_onnmDKj3MA), which was exactly what I did in the days that followed: binge-watched them as if they were a Netflix show.
 
 <video src="{{site.baseurl}}/images/reverse-engineering-lunia/pygame-1.mp4" controls="" preload="metadata" loop="">
 </video>
@@ -136,7 +136,7 @@ For my next trick, I figured I would try to **draw the description textboxes**. 
 
 ![]({{site.baseurl}}/images/reverse-engineering-lunia/game-item.jpg)
 
-Great! Now I just grab the font files and... well, there are none. I will have to make them by hand, again. After a bit of in-game exploration, it turns out **all of the fonts used throughout Lunia can be summed up in four styles**, three of them present in the screenshot above: **regular** (e.g. currency amount, on the bottom), **bold** (e.g. item description textbox, window title), **regular with stroke** (e.g. equipment tabs, on the top), and **bold with stroke**. As shown, they can be in varying colors (and stroke colors), and sometimes even sizes - I chose to ignore different text sizes for now. Upon further inspection, all of the styles derived from the basic, regular one: the stroke is done by simply painting the 4-connected ones, and the bold sprite is simply two of the regular one, the second being offset one pixel to the right.
+Great! Now I just grab the font files and... well, there are none. I will have to make them by hand, again. After a bit of in-game exploration, it turns out **all of the fonts used throughout Lunia can be summed up in four styles**, three of them present in the screenshot above: **regular** (e.g. currency amount, at the bottom), **bold** (e.g. item description textbox, window title), **regular with stroke** (e.g. equipment tabs, at the top), and **bold with stroke**. As shown, they can be in varying colors (and stroke colors), and sometimes even sizes - I chose to ignore different text sizes for now. Upon further inspection, all of the styles derived from the basic, regular one: the stroke is done by simply painting the [4-connected](https://en.wikipedia.org/wiki/Pixel_connectivity) ones, and the bold sprite is simply two of the regular one, the second being offset one pixel to the right.
 
 Well, I once again built the characters' spritesheets by hand. Thankfully, as with most of the game's assets, they are quite fixed in size and there's no anti-aliasing at all, giving them that pixel-art feel which I adore. Having the four spritesheets ready (which could be just the regular one, but I figured it was easier to "harddraw" all of them instead of using code to apply the bold and stroke effects), some more days went by on writing **a very flexible and optimized text drawing module, complete with text coloring, left/center/right alignment, line breaks and text wrapping**. The character widths are variable, but the heights are, for the most part, constant. However, the horizontal spacing is quite wonky. For my implementation, I decided to ditch any attempt at [kerning](https://en.wikipedia.org/wiki/Kerning) and just set a constant 1-pixel spacing for every character, which, if I do say so myself, turned out better than the game itself. To test it isolated from the rest, I decided to write **a basic text editor**:
 
@@ -161,7 +161,7 @@ As the video compression kinda kills it, here's an **uncompressed side-by-side c
 
 ![]({{site.baseurl}}/images/reverse-engineering-lunia/textboxes-comparison.png)
 
-All in all, the window manager / inventory clone runs at around 500-700 FPS on my machine (Ryzen 5 3600), still with lots of pending optimizations. Of course, there's still lots that can be done on it, and I do plan on spending way more time working on it. One of the ideas that sounded interesting at that moment was to **build some sort of model viewer, so I could have my 3D character dressed up with the currently equipped items**. However, to do that, I would need the actual 3D models, of course. So, I went back to scavenging...
+All in all, the window manager / inventory clone runs at around 500-700 FPS on my machine (Ryzen 5 3600), with lots of pending optimizations still. Of course, there's a lot more that can be done, and I do plan on spending way more time working on it. One of the ideas that sounded interesting at that moment was to **build some sort of model viewer, so I could have my 3D character dressed up with the currently equipped items**. However, to do that, I would need the actual 3D models, of course. So, I went back to scavenging...
 
 ### 4. 3D Meshes
 
@@ -247,24 +247,24 @@ This was my first time analyzing a binary with no information before. I thought 
 
 ![]({{site.baseurl}}/images/reverse-engineering-lunia/bank-skeleton-hex-cut.png)
 
-Based on some assumptions taken from the `.SkinnedMesh` exploration, I started taking notes. Well, the first bytes seemed simple enough: some UTF-16 strings containing what looked like file paths...? Based on the `SolidMaterialGroup.Xml` string, I supposed they referenced the other related files. Next, I spotted quite a couple `FF FF FF FF` sequences: they seemed to be **separators for different data sections**: whenever the byte patterns changed, there was a `FF FF FF FF` between both parts.
+Based on some assumptions taken from the `.SkinnedMesh` exploration, I started taking notes. Well, the first bytes seemed simple enough: some UTF-16 strings containing what looked like file paths...? Considering the `SolidMaterialGroup.Xml` string, I supposed they referenced the other related files. Next, I spotted quite a couple `FF FF FF FF` sequences: they seemed to be **separators for different data sections**: whenever the byte patterns changed, there was a `FF FF FF FF` between both parts.
 
 After the UTF-16 strings section, there were **38 UTF-8 strings of 128 bytes each**, zero-padded, of quite suggestive content, leading me to believe they were all **bone names**: `Base`, `Waist`, `Chest`, `Chest1`, `L_Shoulder`, `L_UpperArm`, all the way to `R_Thigh`, `R_Calf`, `R_Foot` and so on. I wonder why they are all of fixed length, as most of the 128 bytes for each string are wasted.
 
 After that (if you are following along on the image, this is at line `00001420`), comes:
-* `00 04 00 03`: I had no idea what those are, but they are on all `.Skeleton`s.
+* `00 04 00 03`: I had no idea what those are, but they are in all `.Skeleton`s.
 * `98 00 00 00`: that's `152` in decimal, which happens to be exactly `38*4`! Don't know what to do with that, though.
 * `FF FF FF FF FF FF FF FF`: two separators, yay.
 * 37 `int`s: `0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 8, 12, 3, 14, 3, 16, 17, 18, 19, 20, 21, 22, 20, 24, 0, 26, 27, 28, 29, 30, 31, 27, 33, 34, 35, 36`. It's a list of integers going from 0 to 36, almost sorted, with some repetitions.
-* `00 01 00 03`: Same, no idea, is on all `.Skeleton`s.
+* `00 01 00 03`: Same, no idea, is in all `.Skeleton`s.
 * `F0 05 00 00`: `1520` in decimal... `38*40`! So what?
 * `FF FF FF FF`: another separator.
 
-Now came the scary part: 1528 bytes (that's `38*40 + 8`...) until the last 4, another separator. Again, if you are following on the image, that's on line `000014E0`.
+Now came the scary part: 1528 bytes (that's `38*40 + 8`...) until the last 4, another separator. Again, if you are following on the image, that's at line `000014E0`.
 
-**I assumed there had to be at least 38 triplets of floats somewhere, to represent one vertex for each bone name found earlier, somehow.** As 1528 is indeed divisible by 4, the size of a `float` (or `int`), I decided to break it down into 4-byte groups, and doing that, I noticed there were **lots of triples of `00 00 80 3F`**. By looking at the character representations of the binary data back on the image, they can be easily spotted by the sequence `..Ç?..Ç?..Ç?`. Keeping in mind the [endianness](https://en.wikipedia.org/wiki/Endianness), **it turns out that `0x3F800000` in [IEEE 754](https://en.wikipedia.org/wiki/IEEE_754) is exactly `1.0`**! That left me confident I was on the right path.
+**I assumed there had to be at least 38 triplets of floats somewhere, to represent one vertex for each bone name found earlier, somehow.** As 1528 is indeed divisible by 4, the size of a `float` (or `int`), I decided to break it down into 4-byte groups, and doing that, I noticed there were **lots of triples of `00 00 80 3F`**. By looking at the character representations of the binary data back in the image, they can be easily spotted by the sequence `..Ç?..Ç?..Ç?`. Keeping in mind the [endianness](https://en.wikipedia.org/wiki/Endianness), **it turns out that `0x3F800000` in [IEEE 754](https://en.wikipedia.org/wiki/IEEE_754) is exactly `1.0`**! That left me confident I was on the right path.
 
-Taking the 1528 bytes, ignoring the first 8, and splitting the rest into 38 groups of 40 bytes (10 `float`s) each gave me a hunch to further split those 10 `float`s into groups of 1, 3, 3, and 3. Here's a snippet of that, with prettier whitespace:
+Taking the 1528 bytes, ignoring the first 8 (`00 00 00 80 47 92 36 41`), and splitting the rest into 38 groups of 40 bytes (10 `float`s) each gave me a hunch to further split those 10 `float`s into groups of 1, 3, 3, and 3. Here's a snippet of that, with prettier whitespace:
 
 {% highlight plaintext %}
 24 BF C2 BD
@@ -290,33 +290,33 @@ E3 19 03 40
     A6 03 90 B8   00 03 00 03   00 00 00 00
 {% endhighlight %}
 
-Taking those `float`s and [converting them into decimals](https://www.h-schmidt.net/FloatConverter/IEEE754.html):
+Taking those `float`s and [converting them into decimals](https://www.h-schmidt.net/FloatConverter/IEEE754.html) yields:
 
 {% highlight plaintext %}
 -0.09509
-     1.000   1.000   1.000
-     0.000   0.000   0.000
-     1.000  -0.000  12.733
+     1.000    1.000    1.000
+     0.000    0.000    0.000
+     1.000   -0.000   12.733
 -0.11045
-     1.000   1.000   1.000
-     0.000   0.000  -0.707
-     0.707  -0.000  13.891
+     1.000    1.000    1.000
+     0.000    0.000   -0.707
+     0.707   -0.000   13.891
 -0.22117
-     1.000   1.000   1.000
-     0.000   0.000  -0.707
-     0.707  -0.000  15.623
+     1.000    1.000    1.000
+     0.000    0.000   -0.707
+     0.707   -0.000   15.623
 [...]
  0.84495
-     1.000   1.000   1.000
-     0.739   0.009   0.673
-    -0.009   1.312   0.304
+     1.000    1.000    1.000
+     0.739    0.009    0.673
+    -0.009    1.312    0.304
  2.04845
-     1.000   1.000   1.000
-     0.999   0.012  -0.047
-    -0.000   0.000   0.000
+     1.000    1.000    1.000
+     0.999    0.012   -0.047
+    -0.000    0.000    0.000
 {% endhighlight %}
 
-Assuming they kept their order, **each of the 38 bones has a name and 10 `float`s related to it**. If I enumerated them from 0 through 9, for each of the groups of 10:
+Assuming they keep their order, **each of the 38 bones has a name and 10 `float`s related to it**. If I enumerated them from 0 through 9, for each of the groups of 10:
 * 0: Unsure. Definitely a `float`, though.
 * 1, 2, 3: Unsure. In most of the `.Skeleton`s, all `1.0`s. Rarely, may have a slight (±0.2) variation.
 * 4, 5, 6: Unsure. In all of the `.Skeleton`s, are in the interval `[-1.0, 1.0]`.
@@ -330,21 +330,21 @@ Boom. I had something that looked like a humanoid figure.
 
 Do keep in mind that this took a whole day of staring at a bunch of bytes, but the feeling when I finally had the plotted coordinates was so, so worth it. Well, I supposed the next steps were to "connect the dots", right? I then watched some hours of Blender tutorials on rigging, to finally try and understand what armatures really were, and what I should be looking for.
 
-Ideally, **most of the bones should be interconnected**, so when you move a shoulder, the arm moves as well, and so do the fingers. If you twist the waist, their whole upper body should move accordingly. **That strongly suggested some kind of hierarchy, which makes me think of [trees](https://en.wikipedia.org/wiki/Tree_(data_structure)).** The only data on the file that could possibly have something to do with hierarchies and tree structures were **the sequence of almost sorted 37 `int`s** located right after the bone names and the points.
+Ideally, **most of the bones should be interconnected**, so when you move a shoulder, the arm moves as well, and so do the fingers. If you twist the waist, their whole upper body should move accordingly. **That strongly suggested some kind of hierarchy, which instantly made me think of [trees](https://en.wikipedia.org/wiki/Tree_(data_structure)).** The only data on the file that could possibly have something to do with hierarchies and tree structures were **the sequence of almost sorted 37 `int`s** located right after the bone names and the points.
 
 However, having one fewer than the number of bones kinda threw me off for a good while. 
 After more hours of staring at binary, I realized **most of the bones were listed in an almost sorted order**: `L_Shoulder`, `L_UpperArm`, `L_ForeArm`, `L_Wrist`, `L_Hand`, `L_Finger1`, `L_Finger2`, `L_Finger3`, `L_Thumb1`, `L_Thumb2`... All of that almost matched the number sequence in question, but putting both lists side by side didn't make much sense, and neither did the names, until...
 
 Until I realized **there had to be a reference point for the whole model, a `Base`**. The trick was that, although its name was listed first, it was actually the last point in the file. With that fix, I could now properly match the points and names. Moreover, the sequence having one less element than the amount of bones probably meant there was none for the `Base` bone, which made everything fit.
 
-**The number sequence was a [serialized](https://en.wikipedia.org/wiki/Serialization) tree, with each integer representing the index of the parent bone, with `0` being the base (last bone).** When I finally connected everyone to its parent...
+**The number sequence was a [serialized](https://en.wikipedia.org/wiki/Serialization) tree**, with each integer representing the index of the parent bone, with `0` being the base (last bone). When I finally connected everyone to its parent...
 
 <video src="{{site.baseurl}}/images/reverse-engineering-lunia/skeleton-2.mp4" controls="" preload="metadata" loop="">
 </video>
 
-I quickly wrote a Python script to load any `.Skeleton` and output their armature using what I had found so far. From experimenting with a bunch of other models, **a couple of them seemed to be a little bit skewed, or with all of the points in (almost) the same plane, or with some other deformations, which probably indicates there's data missing**. Well, I guess it's got something to do with all those other `float`s I completely ignored along the way.
+I quickly wrote a Python script to load any `.Skeleton` and output their armature using what I had found so far. From experimenting with a bunch of other models, **a couple of them seemed to be a little bit skewed, or with all of the points in the same plane, or with some other deformations, which probably indicates there's data missing**. Well, I guess it's got something to do with all those other `float`s I completely ignored along the way.
 
-Also, it was not that big of a surprise that **all player characters have over a hundred bones each, complete with wing bones, skirt bones, weapon bones**... Some of the main bosses also had more complex skeletons, and I then realized tackling the bank guy first was a great idea.
+Also, it was not that big of a surprise that **all player characters had over a hundred bones each, complete with wing bones, skirt bones, weapon bones**... Some of the main bosses also had more complex skeletons, and I then realized tackling the bank guy first was a great idea.
 
 The `.SkinnedAnim`s were still left untouched, for now. I did take a look at them, but I still feel that completing my understanding of the `.Skeleton`s were a must before going further, so no advancements made there. Once more, I tried searching for answers and previous work online, when I stumbled upon...
 
@@ -352,9 +352,9 @@ The `.SkinnedAnim`s were still left untouched, for now. I did take a look at the
 
 I got my hands on a huge collection of files, along with tutorials on how to fire up a server, as well as the source code itself. I supposed all of that were leaked, somehow? This was mostly a general exploration, as an attempt to better understand the architecture and find the data tables and such.
 
-**Lunia's servers ran on [ASP](https://en.wikipedia.org/wiki/Active_Server_Pages), [IIS](https://en.wikipedia.org/wiki/Internet_Information_Services) and [MSSQL](https://en.wikipedia.org/wiki/Microsoft_SQL_Server), all running in Windows Server 2003.** It's interesting to note that it appears each square was a single server instance, and each chat channel was an independent IRC-based server also. The technologies used were ancient compared to the ones available today - admittedly, once again, there were no big standards for MMO development at the time - and most of the files I had were far from complete or even functional, and so I have to admit I wasn't much interested in trying to set up my own server. After snooping around for some minutes, I turned my attention to the real interesting stuff: the game source code and development files.
+**Lunia's servers ran on [ASP](https://en.wikipedia.org/wiki/Active_Server_Pages), [IIS](https://en.wikipedia.org/wiki/Internet_Information_Services) and [MSSQL](https://en.wikipedia.org/wiki/Microsoft_SQL_Server), all on top of Windows Server 2003.** It's interesting to note that it appears each square was a single server instance, and each chat channel was an independent IRC-based server also. The technologies used were ancient compared to the ones available today - admittedly, once again, there were no big standards for MMO development at the time - and most of the files I had were far from complete or even functional, and so I have to admit I wasn't much interested in trying to set up my own server. After snooping around for some minutes, I turned my attention to the real interesting stuff: the game source code and development files.
 
-**Lunia itself was built on Visual C++**, and seemed to have grown alongside its own custom engine, "XRated". With it, there were dozens of custom tools to create and edit items, quests, pets, chests, and so on. A lot of code had the purpose of converting to and from those pesky custom file formats, and so they are probably very helpful on reverse engineering them.
+**Lunia itself was built on [Visual C++](https://en.wikipedia.org/wiki/Microsoft_Visual_C%2B%2B)**, and seemed to have grown alongside its own custom engine, "XRated". With it, there were dozens of custom tools to create and edit items, quests, pets, chests, and so on. A lot of code had the purpose of converting to and from those pesky custom file formats, and so they are probably very helpful for reverse engineering them.
 
 All the "compiled" files found earlier in the client data could also be found here, like the `.tga` files that eventually generated all `.dds` 2D assets, all the `.xml` that eventually became the `.b` databases, and the uncompiled `.fx` shader code that were loaded in the client as compiled `.fxc`.
 
@@ -364,8 +364,10 @@ Here are the most interesting bits, and what I was actually looking for:
 * Tables for all fortifications and their stats multipliers.
 * Tables for fishing rods, drop rates and other variables.
 * All quest data, requirements and rewards.
-* Shops, items for sale, sales prices, etc.
+* All shops, items for sale, sales prices, etc.
 * Skills and its requirements, damage, cooldowns, etc.
+
+I then grabbed most of the data tables and spent a day or two writing a dozen Python scripts to parse the `.xml`s and convert parts of them to [JSON](https://en.wikipedia.org/wiki/JSON) objects, which I plan to use later with the Pygame application from before.
 
 The code documentation was... rough, to say the least. Lots of comments were in Korean, and the code style in general was definitely inconsistent - I did find a `.txt` that listed some guidelines, though! I also found a comment in one of the files that handled the animations, which simply wrote "[banco de gaia - celestine](https://www.youtube.com/watch?v=I9AiyoKUJlU)". I wonder if that was the song whoever was listening to while writing that piece of code?
 
@@ -373,9 +375,9 @@ The code documentation was... rough, to say the least. Lots of comments were in 
 
 Of course, **there was also all the code for the graphics rendering**, like the one above. Most of them were also authored by `juhnu`, the same name found earlier. I managed to find the code responsible for loading the 3D model files mentioned in the last section, and some of my assumptions were confirmed, while others were corrected.
 
-* The last section of the `.SkinnedMesh` files are, per the code that handles it, "skin weights". Not sure what to use them for, but oh well.
+* **The last section of the `.SkinnedMesh` files are, per the code that handles it, "skin weights".** Not sure what to use them for, but oh well.
 * `.Skeleton`s are indeed composed of a header, a list of bone names, a bone hierarchy and a reference pose. **A bone `struct` is composed of a `float3 position`, `float3 scale` and `floatquat orientation`.** Would the latter be a [quaternion](https://www.youtube.com/watch?v=d4EgbgTm0Bg)? Interesting...
-* `.SkinnedAnim`s are made of starting and ending frames, a speed modifier, a list of frames, a list of bones, a frame interval and a frame rate. The animation code does give more hints on how to decompose the files.
+* **`.SkinnedAnim`s are made of starting and ending frames, a speed modifier, a list of frames, a list of bones, a frame interval and a frame rate.** The animation code does give more hints on how to decompose the files.
 
 ![]({{site.baseurl}}/images/reverse-engineering-lunia/source-code-2.png)
 
@@ -392,7 +394,7 @@ Regarding the **Python Inventory / Window Manager thingy**, here's what I'm plan
 * **Stats calculations** based on class, level and equipped items - [in-game screenshot]({{site.baseurl}}/images/reverse-engineering-lunia/game-stats.jpg).
 * **Fishing** and all of its mechanics.
 * **Extract item data to an item server and API**, so as to be able to have the whole item database accessible without having to load it all on every app startup, as well as to mimic more closely the original game.
-* **A "wardrobe" tool / model viewer**, based on the currently equipped items. However, that wouldn't be possible in Pygame, which is a strictly 2D library, so I would have to rewrite all of it on something else like [Unity](https://unity.com/). That would be a whole new journey, once again starting from barely any experience, and I'm definitely looking forward to that.
+* **A "wardrobe" tool / model viewer**, based on the currently equipped items. However, that wouldn't be possible in Pygame, which is a strictly 2D library, so I would have to rewrite all of it in something else like [Unity](https://unity.com/). That would be a whole new journey, once again starting from barely any experience, and I'm definitely looking forward to that.
 * Overall tidying up of the code, and greater adherence to best OOP practices.
 
 ![]({{site.baseurl}}/images/reverse-engineering-lunia/game-shop.jpg)
