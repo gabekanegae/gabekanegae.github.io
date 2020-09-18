@@ -6,7 +6,7 @@ show-more-link: true
 
 ![]({{site.baseurl}}/images/reverse-engineering-lunia/header.jpg)
 
-**Lunia** was an [MMORPG](https://en.wikipedia.org/wiki/Massively_multiplayer_online_role-playing_game0) by South Korean producer [allm](http://www.allm.co.kr/), **originally launched in early 2006** and published in Brazil by [Level Up! Games](https://levelupgames.uol.com.br/levelup/) in late 2008. Its main premise was being an MMORPG with heavy elements of an [arcade beat 'em up](https://en.wikipedia.org/wiki/Beat_%27em_up), being one of the first to combine both genres.
+**Lunia** was an [MMORPG](https://en.wikipedia.org/wiki/Massively_multiplayer_online_role-playing_game) by South Korean producer [allm](http://www.allm.co.kr/), **originally launched in early 2006** and published in Brazil by [Level Up! Games](https://levelupgames.uol.com.br/levelup/) in late 2008. Its main premise was being an MMORPG with heavy elements of an [arcade beat 'em up](https://en.wikipedia.org/wiki/Beat_%27em_up), being one of the first to combine both genres.
 
 **I started playing Lunia sometime in 2009**, and it was what taught me fast typing, introduced me to online forums and communities, and gracefully presented me the world of MMOs in general. The game was the biggest time-sink of young me until late 2012, when the Brazilian servers shut down. Sadly, the global servers followed suit just a year after. It's fair to say it was far from being the largest MMO at the time, but to 9-year-old me, it was golden.
 
@@ -58,7 +58,7 @@ Some other relevant (and fun!) game mechanics were:
 * **Item "fortification" and "light fortification":** Improve your items by spending reagents, heavily based on RNG. The latter would also make your equipment shinier.
 * **Fishing:** Leave your character fishing while idle to turn bait into various types of fishes, which can be sold for gold or traded with NPCs for many valuable items and resources.
 * **Pets:** Choose between dogs, cats, fairies, dragons, unicorns, and a dozen other small creatures that follow you around and give you stat bonuses - but only if you feed them.
-* **Slime Racing:** Bet coins on a fully RNG-based NPC race. Basically a [Roulette](https://en.wikipedia.org/wiki/Roulette) numbered from 1 to 9.
+* **Slime Racing:** Bet coins on a fully [RNG](https://en.wikipedia.org/wiki/Random_number_generation)-based NPC race. Basically a [Roulette](https://en.wikipedia.org/wiki/Roulette) numbered from 1 to 9.
 * **Achievements:** Complete various milestones and rack up achievement points, which in turn gives you some colored stars after your name for clout.
 
 ![]({{site.baseurl}}/images/reverse-engineering-lunia/game-fishing.jpg)
@@ -231,11 +231,11 @@ With that fix, around a dozen Blender tutorials, and going face first into that 
 
 ![]({{site.baseurl}}/images/reverse-engineering-lunia/blender-render.jpg)
 
-It's interesting to note that, for the character model on the right, I had to piece together the individual models for each body part, as there's one model for every piece of equipment in the game. I decided to pick my favorite equipment set, the one from the Forest of Water (Myth 2), which matches the one my character is wearing in some of the screenshots shown earlier in this post. **It's also clearly [in a different pose](https://en.wikipedia.org/wiki/T-pose) than in-game, I wonder why...**
+It's interesting to note that, for the character on the right, I had to piece together the models for each body part, as there's an individual model for every piece of equipment in the game. I decided to pick my favorite equipment set: the one from the Forest of Water (Myth 2), which matches the one my character is wearing in some of the screenshots shown earlier in this post. **It's also clearly [in a different pose](https://en.wikipedia.org/wiki/T-pose) than in-game, I wonder why...**
 
 ### 5. 3D Rigging and Animations
 
-A 3D rig, also known as an armature or skeleton, is a collection of "bones" that each relates to a subset of vertices from its mesh and may be connected between themselves. They mainly serve as **a tool for creating smooth animations for the model by automatically deforming the appropriate vertices** without having to manually manipulate every single one of them for every animation frame. Most rigged models are usually related to characters, but anything that moves may have a skeleton as well. In the context of Lunia, other than all playable and non-playable characters, most of the spells also have an armature attached.
+A [3D rig](https://en.wikipedia.org/wiki/Skeletal_animation), also known as an armature or skeleton, is a collection of "bones" that each relates to a subset of vertices from its mesh and may be connected between themselves. They mainly serve as **a tool for creating smooth animations for the model by automatically deforming the appropriate vertices** without having to manually manipulate every single one of them for every animation frame. Most rigged models are usually related to characters, but anything that moves may have a skeleton as well. In the context of Lunia, other than all playable and non-playable characters, most of the spells also have an armature attached.
 
 With that in mind, it became pretty clear that `.Skeleton` probably defines the bones, and `.SkinnedAnim` should list a series of frames and the rig's movement in between them. Unfortunately, **I couldn't find any previous work done on any of those files anywhere on the web**. Although that Noesis plugin handled the meshes, there's absolutely nothing regarding armatures or their animations. So this time I had to go barehanded.
 
@@ -262,7 +262,7 @@ After that (if you are following along on the image, this is at line `00001420`)
 
 Now came the scary part: 1528 bytes (that's `38*40 + 8`...) until the last 4, another separator. Again, if you are following on the image, that's at line `000014E0`.
 
-**I assumed there had to be at least 38 triplets of floats somewhere, to represent one vertex for each bone name found earlier, somehow.** As 1528 is indeed divisible by 4, the size of a `float` (or `int`), I decided to break it down into 4-byte groups, and doing that, I noticed there were **lots of triples of `00 00 80 3F`**. By looking at the character representations of the binary data back in the image, they can be easily spotted by the sequence `..Ç?..Ç?..Ç?`. Keeping in mind the [endianness](https://en.wikipedia.org/wiki/Endianness), **it turns out that `0x3F800000` in [IEEE 754](https://en.wikipedia.org/wiki/IEEE_754) is exactly `1.0`**! That left me confident I was on the right path.
+**I assumed there had to be at least 38 triplets of floats somewhere, to represent one vertex for each bone name found earlier, somehow.** As 1528 is indeed divisible by 4, the size of a `float` (or `int`), I decided to break it down into 4-byte groups, and doing that, I noticed there were **lots of triples of `00 00 80 3F`**. By looking at the character representations of the binary data back in the image, they can be easily spotted by the sequence `..Ç?..Ç?..Ç?`. With [endianness](https://en.wikipedia.org/wiki/Endianness) in mind, **it turns out that `0x3F800000` in [IEEE 754](https://en.wikipedia.org/wiki/IEEE_754) is exactly `1.0`**! That left me confident I was on the right path.
 
 Taking the 1528 bytes, ignoring the first 8 (`00 00 00 80 47 92 36 41`), and splitting the rest into 38 groups of 40 bytes (10 `float`s) each gave me a hunch to further split those 10 `float`s into groups of 1, 3, 3, and 3. Here's a snippet of that, with prettier whitespace:
 
@@ -352,7 +352,7 @@ The `.SkinnedAnim`s were still left untouched, for now. I did take a look at the
 
 I got my hands on a huge collection of files, along with tutorials on how to fire up a server, as well as the source code itself. I supposed all of that were leaked, somehow? This was mostly a general exploration, as an attempt to better understand the architecture and find the data tables and such.
 
-**Lunia's servers ran on [ASP](https://en.wikipedia.org/wiki/Active_Server_Pages), [IIS](https://en.wikipedia.org/wiki/Internet_Information_Services) and [MSSQL](https://en.wikipedia.org/wiki/Microsoft_SQL_Server), all on top of Windows Server 2003.** It's interesting to note that it appears each square was a single server instance, and each chat channel was an independent IRC-based server also. The technologies used were ancient compared to the ones available today - admittedly, once again, there were no big standards for MMO development at the time - and most of the files I had were far from complete or even functional, and so I have to admit I wasn't much interested in trying to set up my own server. After snooping around for some minutes, I turned my attention to the real interesting stuff: the game source code and development files.
+**Lunia's servers ran on [ASP](https://en.wikipedia.org/wiki/Active_Server_Pages), [IIS](https://en.wikipedia.org/wiki/Internet_Information_Services) and [MSSQL](https://en.wikipedia.org/wiki/Microsoft_SQL_Server), all on top of Windows Server 2003.** It's interesting to note that it appears each square was a single server instance, and each chat channel was an independent IRC-based server also. As the technologies used were ancient compared to the ones available today, and most of the files I had were barely functional, I have to admit I wasn't much interested in trying to set up my own server or investigating further. After snooping around for some minutes, I turned my attention to the real interesting stuff: the game source code and development files.
 
 **Lunia itself was built on [Visual C++](https://en.wikipedia.org/wiki/Microsoft_Visual_C%2B%2B)**, and seemed to have grown alongside its own custom engine, "XRated". With it, there were dozens of custom tools to create and edit items, quests, pets, chests, and so on. A lot of code had the purpose of converting to and from those pesky custom file formats, and so they are probably very helpful for reverse engineering them.
 
@@ -369,7 +369,7 @@ Here are the most interesting bits, and what I was actually looking for:
 
 I then grabbed most of the data tables and spent a day or two writing a dozen Python scripts to parse the `.xml`s and convert parts of them to [JSON](https://en.wikipedia.org/wiki/JSON) objects, which I plan to use later with the Pygame application from before.
 
-The code documentation was... rough, to say the least. Lots of comments were in Korean, and the code style in general was definitely inconsistent - I did find a `.txt` that listed some guidelines, though! I also found a comment in one of the files that handled the animations, which simply wrote "[banco de gaia - celestine](https://www.youtube.com/watch?v=I9AiyoKUJlU)". I wonder if that was the song whoever was listening to while writing that piece of code?
+The code documentation was... rough, to say the least. Lots of comments were in Korean, and the code style in general was definitely inconsistent - I did find a `.txt` that listed some guidelines, though! I also found a comment in one of the files that handled the animations, which simply wrote "[banco de gaia - celestine](https://www.youtube.com/watch?v=I9AiyoKUJlU)". I wonder if that was the song whoever wrote that piece of code was listening to at the time?
 
 ![]({{site.baseurl}}/images/reverse-engineering-lunia/source-code-1.png)
 
@@ -389,9 +389,9 @@ As I wrote in the beginning, I still want to take all of this a lot further, whi
 
 Regarding the **Python Inventory / Window Manager thingy**, here's what I'm planning as the next steps:
 
-* **Item shops**, buying and selling, and the currency itself - in-game screenshot below.
-* **Item fortification**, together with reagents and catalysts - [in-game screenshot]({{site.baseurl}}/images/reverse-engineering-lunia/game-fortification.jpg).
-* **Stats calculations** based on class, level and equipped items - [in-game screenshot]({{site.baseurl}}/images/reverse-engineering-lunia/game-stats.jpg).
+* **Item shops**, buying and selling, and the currency itself (in-game screenshot below).
+* **Item fortification**, together with reagents and catalysts ([in-game screenshot]({{site.baseurl}}/images/reverse-engineering-lunia/game-fortification.jpg)).
+* **Stats calculations** based on class, level and equipped items ([in-game screenshot]({{site.baseurl}}/images/reverse-engineering-lunia/game-stats.jpg)).
 * **Fishing** and all of its mechanics.
 * **Extract item data to an item server and API**, so as to be able to have the whole item database accessible without having to load it all on every app startup, as well as to mimic more closely the original game.
 * **A "wardrobe" tool / model viewer**, based on the currently equipped items. However, that wouldn't be possible in Pygame, which is a strictly 2D library, so I would have to rewrite all of it in something else like [Unity](https://unity.com/). That would be a whole new journey, once again starting from barely any experience, and I'm definitely looking forward to that.
@@ -407,7 +407,7 @@ With regards to the **3D assets**, I may continue to work on them by:
 
 At last, about the **server files and source code**:
 
-* Finish reading everything and investigating every single file, and see what else I can find, as well as what logic I can replicate.
+* Finish opening and reading every single file and see what else I can find, as well as what logic I can replicate.
 
 And... whatever else might pop in my head during all of that.
 
