@@ -223,7 +223,7 @@ Here's the snippet of (really ugly) Python code that I wrote to flip the y coord
 uvMap = bytearray(uvMap)
 for i in range(4, len(uvMap), 4*2):
     y = struct.unpack("f", uvMap[i:i+4])[0]
-    uvMap[i:i+4] = struct.pack("f", 1-f)
+    uvMap[i:i+4] = struct.pack("f", 1-y)
 uvMap = bytes(uvMap)
 {% endhighlight %}
 
