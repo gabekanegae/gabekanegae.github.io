@@ -58,7 +58,7 @@ Some other relevant (and fun!) game mechanics were:
 * **Item "fortification" and "light fortification":** Improve your items by spending reagents, heavily based on RNG. The latter would also make your equipment shinier.
 * **Fishing:** Leave your character fishing while idle to turn bait into various types of fishes, which can be sold for gold or traded with NPCs for many valuable items and resources.
 * **Pets:** Choose between dogs, cats, fairies, dragons, unicorns, and a dozen other small creatures that follow you around and give you stat bonuses - but only if you feed them.
-* **Slime Racing:** Bet coins on a fully [RNG](https://en.wikipedia.org/wiki/Random_number_generation)-based NPC race. Basically a [Roulette](https://en.wikipedia.org/wiki/Roulette) numbered from 1 to 9.
+* **Slime Racing:** Bet coins on a fully RNG-based NPC race. Basically a [Roulette](https://en.wikipedia.org/wiki/Roulette) numbered from 1 to 9.
 * **Achievements:** Complete various milestones and rack up achievement points, which in turn gives you some colored stars after your name for clout.
 
 ![]({{site.baseurl}}/images/reverse-engineering-lunia/game-fishing.jpg)
@@ -85,7 +85,7 @@ There we go! Here are the interesting pieces that were unlocked by simply extrac
 
 * **Over 25.000 item and skill icons** at `Display/Textures/`, all in `.dds` format (screenshot below).
 * **All game strings** at `Locales/`, in more weirdly ancient `.xml` text files. Quest texts, NPC phrases, item and skill names and descriptions, achievements and everything else.
-* **Over 15.000 `.dds` textures for every single 3D model in the game** at `Mapping/`, from characters to pieces of equipment to skill effects (screenshot below). There were also around hundred textures for stage visual elements (trees, rocks, buildings...) at `Maps/*/Shared/`.
+* **Over 15.000 `.dds` textures for every single 3D model in the game** at `Mapping/`, from characters to pieces of equipment to skill effects (screenshot below). There were also around a hundred textures for the stage's visual elements (trees, rocks, buildings...) at `Maps/*/Shared/`.
 * **Hit sounds, character attacks' SFX, voice lines and a bunch of other sound snippets** at `Sounds/` all in the same `.ogg` and `.wav` formats, along with copies of the same ambiance sounds and background music that was outside the `.cfp` archive, for some reason.
 * **All UI visual elements** as `.tga` files and more `.swf` animations at `UI2/`, mainly inside `UI2/imagesets/` and `UI2/Stage/`.
 * A lot of simple text files with different extensions everywhere. Some of them describing UI element positioning (`.layout`, `.looknfeel`), and mainly a load of `.xml` detailing camera configurations, coordinates for asset placement in stages, and just generally referencing assets via their file paths.
@@ -125,7 +125,7 @@ I first started taking screenshots of Lunia's inventory and modifying pixels her
 <video src="{{site.baseurl}}/images/reverse-engineering-lunia/pygame-1.mp4" controls="" preload="metadata" loop="">
 </video>
 
-The next challenge was to **show the item quantities, in the lower right corner of their icons**. Of course, a requirement for that would be the number of characters sprites, which I still hadn't managed to find in the game files. With that, I decided to just screenshot them and manually create a spritesheet with Photoshop and some patience. Next, some more hours of work went by to build higher-level functions that drew strings of numbers in the appropriate positions.
+The next challenge was to **show the item quantities, in the lower right corner of their icons**. Of course, a requirement for that would be the fonts, which I still hadn't managed to find in the game files. With that, I decided to just screenshot the numerical characters and manually create a spritesheet with Photoshop and some patience. Next, some more hours of work went by to build higher-level functions that drew strings of numbers at the appropriate positions.
 
 Then, I spent some more days refining the code (and rewriting it all from scratch to apply my newly gained Pygame and OOP knowledge) and implementing some of the remaining, most obvious features: **item swapping, equipping and unequipping, stacking and splitting**, and a bunch of other small touch-ups. It's at those times you stop to appreciate the fine art of UI/UX development: it turns out game UIs have so many small details that we take for granted when playing but stick out like a sore thumb when you forget to implement them.
 
@@ -136,7 +136,7 @@ For my next trick, I figured I would try to **draw the description textboxes**. 
 
 ![]({{site.baseurl}}/images/reverse-engineering-lunia/game-item.jpg)
 
-Great! Now I just grab the font files and... well, there are none. I will have to make them by hand, again. After a bit of in-game exploration, it turns out **all of the fonts used throughout Lunia can be summed up in four styles**, three of them present in the screenshot above: **regular** (e.g. currency amount, at the bottom), **bold** (e.g. item description textbox, window title), **regular with stroke** (e.g. equipment tabs, at the top), and **bold with stroke**. As shown, they can be in varying colors (and stroke colors), and sometimes even sizes - I chose to ignore different text sizes for now. Upon further inspection, all of the styles derived from the basic, regular one: the stroke is done by simply painting the [4-connected](https://en.wikipedia.org/wiki/Pixel_connectivity) ones, and the bold sprite is simply two of the regular one, the second being offset one pixel to the right.
+Great! Now I just grab the font files and... well, there are none. I will have to make them by hand, again. After a bit of in-game exploration, it turns out **all of the fonts used throughout Lunia can be summed up in four styles**, three of them present in the screenshot above: **regular** (e.g. currency amount, at the bottom), **bold** (e.g. item description textbox, window title), **regular with stroke** (e.g. equipment tabs, at the top), and **bold with stroke**. As shown, they can be in varying colors (and stroke colors), and sometimes even sizes - I chose to ignore different text sizes for now. Upon further inspection, all of the styles derived from the basic, regular one: the stroke is done by simply painting the [4-connected](https://en.wikipedia.org/wiki/Pixel_connectivity) pixels, and the bold sprite is simply two of the regular one, the second being drawn offset one pixel to the right.
 
 Well, I once again built the characters' spritesheets by hand. Thankfully, as with most of the game's assets, they are quite fixed in size and there's no anti-aliasing at all, giving them that pixel-art feel which I adore. Having the four spritesheets ready (which could be just the regular one, but I figured it was easier to "harddraw" all of them instead of using code to apply the bold and stroke effects), some more days went by on writing **a very flexible and optimized text drawing module, complete with text coloring, left/center/right alignment, line breaks and text wrapping**. The character widths are variable, but the heights are, for the most part, constant. However, the horizontal spacing is quite wonky. For my implementation, I decided to ditch any attempt at [kerning](https://en.wikipedia.org/wiki/Kerning) and just set a constant 1-pixel spacing for every character, which, if I do say so myself, turned out better than the game itself. To test it isolated from the rest, I decided to write **a basic text editor**:
 
@@ -169,7 +169,7 @@ I had never fiddled with 3D stuff before, but I knew some basic concepts and I'v
 
 ![]({{site.baseurl}}/images/reverse-engineering-lunia/model-files.jpg)
 
-`BankClerk.material.xml` referenced the model texture, at `Mapping/`; `BankClerk.animation.xml` linked the `.Skeleton` and `.SkinnedAnim` files, and set the animation variables `speed` to `30` and `playback` to `2`, whatever those meant; and `BankClerk.xml` simply defined an object of type `Character::SkinnedModelInfo` that tied everything together.
+`BankClerk.material.xml` referenced the model texture located at `Mapping/`; `BankClerk.animation.xml` linked the `.Skeleton` and `.SkinnedAnim` files, and set the animation variables `speed` to `30` and `playback` to `2`, whatever those meant; and `BankClerk.xml` simply defined an object of type `Character::SkinnedModelInfo` that tied everything together.
 
 After lots of searching around the web for something that could make some sense of those files, I finally found **[Noesis](https://richwhitehouse.com/index.php?content=inc_projects.php&showproject=91), which seemed to be a tool for opening and converting 3D models**, with an easy API for people to write [plugins](https://himeworks.com/noesis-plugins/) for custom file types. With the program itself, I also found **a [custom plugin for `.SkinnedMesh` files](https://himeworks.com/redirect.php?type=noesis&name=Lunia_skinnedmesh)**. Bingo!
 
@@ -376,7 +376,7 @@ The code documentation was... rough, to say the least. Lots of comments were in 
 Of course, **there was also all the code for the graphics rendering**, like the one above. Most of them were also authored by `juhnu`, the same name found earlier. I managed to find the code responsible for loading the 3D model files mentioned in the last section, and some of my assumptions were confirmed, while others were corrected.
 
 * **The last section of the `.SkinnedMesh` files are, per the code that handles it, "skin weights".** Not sure what to use them for, but oh well.
-* `.Skeleton`s are indeed composed of a header, a list of bone names, a bone hierarchy and a reference pose. **A bone `struct` is composed of a `float3 position`, `float3 scale` and `floatquat orientation`.** Would the latter be a [quaternion](https://www.youtube.com/watch?v=d4EgbgTm0Bg)? Interesting...
+* `.Skeleton`s are indeed composed of a header, a list of bone names, a bone hierarchy and a reference pose. **A bone `struct` is composed of a `float3 position`, `float3 scale` and `floatquat orientation`.** Could the latter be a [quaternion](https://www.youtube.com/watch?v=d4EgbgTm0Bg)? Interesting...
 * **`.SkinnedAnim`s are made of starting and ending frames, a speed modifier, a list of frames, a list of bones, a frame interval and a frame rate.** The animation code does give more hints on how to decompose the files.
 
 ![]({{site.baseurl}}/images/reverse-engineering-lunia/source-code-2.png)
@@ -394,7 +394,7 @@ Regarding the **Python Inventory / Window Manager thingy**, here's what I'm plan
 * **Stats calculations** based on class, level and equipped items ([in-game screenshot]({{site.baseurl}}/images/reverse-engineering-lunia/game-stats.jpg)).
 * **Fishing** and all of its mechanics.
 * **Extract item data to an item server and API**, so as to be able to have the whole item database accessible without having to load it all on every app startup, as well as to mimic more closely the original game.
-* **A "wardrobe" tool / model viewer**, based on the currently equipped items. However, that wouldn't be possible in Pygame, which is a strictly 2D library, so I would have to rewrite all of it in something else like [Unity](https://unity.com/). That would be a whole new journey, once again starting from barely any experience, and I'm definitely looking forward to that.
+* **A "wardrobe" tool / model viewer**, based on the currently equipped items. However, that wouldn't be possible in Pygame, which is strictly a 2D library, so I would have to rewrite all of it in something else like [Unity](https://unity.com/). That would be a whole new journey, once again starting from barely any experience, and I'm definitely looking forward to that.
 * Overall tidying up of the code, and greater adherence to best OOP practices.
 
 ![]({{site.baseurl}}/images/reverse-engineering-lunia/game-shop.jpg)
