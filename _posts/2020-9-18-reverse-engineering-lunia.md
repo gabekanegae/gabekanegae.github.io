@@ -73,7 +73,7 @@ Initially, what I had to play around with were the game client files. I managed 
 
 Together with the obvious game executables and cursor icons, most of the files at the root were configuration files. Key bindings, player preferences and graphics options, all stored in `.xml` text files with a bunch of comments in Korean. **A few `.dll`s that grabbed my attention were [`FlashPlayer.dll`](https://en.wikipedia.org/wiki/Adobe_Flash), [`lua50.dll and tolua++.dll`](https://en.wikipedia.org/wiki/Lua_(programming_language)), [`LZMA.dll`](https://en.wikipedia.org/wiki/Lempel%E2%80%93Ziv%E2%80%93Markov_chain_algorithm), and half a dozen with  "[`CEGUI`](https://en.wikipedia.org/wiki/CEGUI)" in the filename.**
 
-The `Cinema/` and `Flash/` directories contained hundreds of `.swf` files that can be viewed with something like [SWF File Player](http://www.swffileplayer.com/). Those are all **Flash animations that are extensively used throughout the game**. Alongside some of them, there were also a few sprites in the [`.dds`](https://en.wikipedia.org/wiki/DirectDraw_Surface) format. `Sounds/` had a hundred `.ogg` and `.wav` sound files, which were **the game's main theme songs, a bunch of background music and general ambiance SFX**. It also contained files `Sounds.cfp` and `Sounds.cpv`, extensions that I had never seen before.
+The `Cinema/` and `Flash/` directories contained hundreds of `.swf` files that can be viewed with something like [SWF File Player](http://www.swffileplayer.com/). Those are all **Flash animations that are extensively used throughout the game**. Alongside some of them, there were also a few sprites in the [`.dds`](https://en.wikipedia.org/wiki/DirectDraw_Surface) format. `Sounds/` had a hundred `.ogg` and `.wav` sound files, which were **the game's main theme songs, a bunch of background music and general ambience SFX**. It also contained files `Sounds.cfp` and `Sounds.cpv`, extensions that I had never seen before.
 
 All the other folders (`Animation/`, `Database/`, `Display/`, `Locales/`, `Mapping/`, `Maps/`, `Shaders/` and `UI2/`) had only two files in each of them: a `.cfp` and `.cpv`, named the same as each of their respective parent directories, exactly like the ones at `Sounds/`.
 
@@ -84,15 +84,15 @@ When trying to figure out what those two file types were, no obvious result show
 There we go! Here are the interesting pieces that were unlocked by simply extracting the archives:
 
 * **Over 25.000 item and skill icons** at `Display/Textures/`, all in `.dds` format (screenshot below).
-* **All game strings** at `Locales/`, in more weirdly ancient `.xml` text files. Quest texts, NPC phrases, item and skill names and descriptions, achievements and everything else.
-* **Over 15.000 `.dds` textures for every single 3D model in the game** at `Mapping/`, from characters to pieces of equipment to skill effects (screenshot below). There were also around a hundred textures for the stage's visual elements (trees, rocks, buildings...) at `Maps/*/Shared/`.
+* **All game strings** at `Locales/`, in more weirdly ancient `.xml` text files. Quest texts, NPC phrases, item and skill names/descriptions, achievements and everything else.
+* **Over 15.000 `.dds` textures for every single 3D model in the game** at `Mapping/`, from characters to pieces of equipment to skill effects (screenshot below). There were also around a hundred textures for the stages' visual elements (trees, rocks, buildings...) at `Maps/*/Shared/`.
 * **Hit sounds, character attacks' SFX, voice lines and a bunch of other sound snippets** at `Sounds/` all in the same `.ogg` and `.wav` formats, along with copies of the same ambiance sounds and background music that was outside the `.cfp` archive, for some reason.
 * **All UI visual elements** as `.tga` files and more `.swf` animations at `UI2/`, mainly inside `UI2/imagesets/` and `UI2/Stage/`.
 * A lot of simple text files with different extensions everywhere. Some of them describing UI element positioning (`.layout`, `.looknfeel`), and mainly a load of `.xml` detailing camera configurations, coordinates for asset placement in stages, and just generally referencing assets via their file paths.
 
 ![]({{site.baseurl}}/images/reverse-engineering-lunia/folder-icons.jpg)
 
-For the image assets, [XnConvert](https://www.xnview.com/en/xnconvert/) made it easy to batch convert both `.dds` and `.tga` file types to the more common `.jpg` extension.
+For the image assets, [XnConvert](https://www.xnview.com/en/xnconvert/) made it easy to batch convert both `.dds` and `.tga` file types to the more common `.png` extension.
 
 ![]({{site.baseurl}}/images/reverse-engineering-lunia/folder-textures.jpg)
 
@@ -178,7 +178,7 @@ After lots of searching around the web for something that could make some sense 
 Well, Noesis has 20 or so file extensions for me to choose from, and none of them were familiar to me. Here's when I realized **I would have to pause for a while and learn a bit about 3D animation before continuing**. First, I decided to set the initial goal of being able to export the models (textured, of course) to something like [Blender](https://www.blender.org/). I also quickly found out that the most friendly, and possibly common, filetype for 3D models is the [`.obj`](https://en.wikipedia.org/wiki/Wavefront_.obj_file) extension.
 
 To start, I learned that a (basic) textured 3D model consists of:
-* A list of **vertices**, or 3D points, usually represented by 3 floats.
+* A list of **vertices**, or 3D points, usually represented by 3 `float`s.
 * A list of **faces**, [usually](https://youtu.be/U93RImC-by4) of [triangles](https://gamedev.stackexchange.com/questions/66312/quads-vs-triangles/66314#66314), each defined by a subset of the vertices. Together with the vertices, they form the model's mesh.
 * A flat **texture file**, usually a square image.
 * A **[UV map](https://en.wikipedia.org/wiki/UV_mapping)**, which defines the relationship (mapping) between the mesh and the texture. 
@@ -237,7 +237,7 @@ It's interesting to note that, for the character on the right, I had to piece to
 
 A [3D rig](https://en.wikipedia.org/wiki/Skeletal_animation), also known as an armature or skeleton, is a collection of "bones" that each relates to a subset of vertices from its mesh and may be connected between themselves. They mainly serve as **a tool for creating smooth animations for the model by automatically deforming the appropriate vertices** without having to manually manipulate every single one of them for every animation frame. Most rigged models are usually related to characters, but anything that moves may have a skeleton as well. In the context of Lunia, other than all playable and non-playable characters, most of the spells also have an armature attached.
 
-With that in mind, it became pretty clear that `.Skeleton` probably defines the bones, and `.SkinnedAnim` should list a series of frames and the rig's movement in between them. Unfortunately, **I couldn't find any previous work done on any of those files anywhere on the web**. Although that Noesis plugin handled the meshes, there's absolutely nothing regarding armatures or their animations. So this time I had to go barehanded.
+With that in mind, it became pretty clear that `.Skeleton` probably defines the bones, and `.SkinnedAnim` should list a series of frames and the rig's movement between them. Unfortunately, **I couldn't find any previous work done on any of those files anywhere on the web**. Although that Noesis plugin handled the meshes, there's absolutely nothing regarding armatures or their animations. So this time I had to go barehanded.
 
 At this point, the `BankClerk` model was the one I was the most familiar with, and **it looked as simple as a humanoid model could get**, he only had one of each: `.SkinnedMesh`; `.Skeleton`; and `.SkinnedAnim`, and being a humanoid, I figured his correct skeleton and movements would be quite easy to recognize. With most of the `.SkinnedMesh` figured out and the assumption that `.SkinnedAnim` probably acts on the `.Skeleton`, it was easy to choose the next one to tackle.
 
