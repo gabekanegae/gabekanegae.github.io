@@ -118,7 +118,7 @@ I also recommend saving the list of commands and descriptions in a text file cal
 Then, in your `main.py` file, create a new function for the command, with `update` and `context` as arguments:
 {% highlight python %}
 def random(update, context):
-    random = ((192*39)/48+15)*20/855
+    random = ((192*39)//48+15)*20//855
     s = "Your totally random number is {}. :)".format(random)
 
     update.message.reply_text(s)
