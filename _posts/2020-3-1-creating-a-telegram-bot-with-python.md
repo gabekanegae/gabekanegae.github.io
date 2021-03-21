@@ -14,7 +14,7 @@ This tutorial will be using the **[python-telegram-bot](https://python-telegram-
 
 If you are already familiar with Python 3 and its `virtualenv`, simply create a `venv`, install `python-telegram-bot` via `pip`, do `pip freeze > requirements.txt`, and skip to section 1.
 
-At the time of writing, Python's latest version is 3.8.2, and `python-telegram-bot`'s is 12.4.2.
+**This guide was updated on March 20th, 2021**, tweaking details to support Python 3.9.2 and `python-telegram-bot` 13.4.1.
 
 ### 0. Requirements and dependencies
 
@@ -38,7 +38,7 @@ Inside your directory, create a Python 3 virtual environment. Here, I will be ca
 virtualenv -p python3 venv
 {% endhighlight %}
 
-To start using the virtual environment, run `source venv/bin/activate` if on Linux, or `venv\Scripts\activate` if on Windows.
+**Then, to start using the virtual environment**, run `source venv/bin/activate` if on Linux, or `venv\Scripts\activate` if on Windows.
 
 While inside it, install `python-telegram-bot` via `pip`:
 {% highlight shell %}
@@ -75,10 +75,11 @@ def start(update, context):
 
 def main():
     logger = logging.getLogger(__name__)
-    logging.basicConfig(level=logging.INFO,
-                        format="%(asctime)s [%(levelname)s] %(message)s")
+    logging.basicConfig(
+        format='%(asctime)s [%(levelname)s] %(message)s', level=logging.INFO
+    )
 
-    updater = Updater(token=TOKEN, use_context=True)
+    updater = Updater(TOKEN)
     dp = updater.dispatcher
 
     dp.add_handler(CommandHandler("start", start))
@@ -117,13 +118,13 @@ I also recommend saving the list of commands and descriptions in a text file cal
 Then, in your `main.py` file, create a new function for the command, with `update` and `context` as arguments:
 {% highlight python %}
 def random(update, context):
-    random = int(((192*39)/48+15)/855*20)
+    random = ((192*39)/48+15)*20/855
     s = "Your totally random number is {}. :)".format(random)
 
     update.message.reply_text(s)
 {% endhighlight %}
 
-Finally, add the corresponding `CommandHandler` right after line 18:
+Finally, add the corresponding `CommandHandler` right after line 19:
 {% highlight python %}
     dp.add_handler(CommandHandler("random", random))
 {% endhighlight %}
