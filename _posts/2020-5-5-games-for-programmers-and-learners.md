@@ -46,7 +46,7 @@ A spiritual successor to 2001's [Uplink](https://store.steampowered.com/app/1510
 
 You won't learn much real programming here, but the amazing atmosphere, deep immersion and great storytelling are all there, supported by **[the greatest soundtrack](https://bossbattlerecords.bandcamp.com/album/hacknet) across all games on this list** - it's on [Spotify](https://open.spotify.com/album/6vKaTpEfIxe39EkoGlUv9i) as well! Moral dilemmas, secret organizations and cool graphics are all just icing on the cake.
 
-Hacknet's main storyline can be played from start to finish in around 5 or 6 hours, and my recommendation is to free up a night in your schedule to go through the whole experience in a single session. It's been 3 years since I have done exactly that I still get chills when listening to the [last mission's theme](https://www.youtube.com/watch?v=qFfybn_W8Ak).
+Hacknet's main storyline can be played from start to finish in around 5 or 6 hours, and my recommendation is to free up a night in your schedule to go through the whole experience in a single session. It's been 3 years since I have done exactly that, and I still get chills when listening to the [last mission's theme](https://www.youtube.com/watch?v=qFfybn_W8Ak).
 
 ### [Factorio](https://store.steampowered.com/app/427520/)
 
