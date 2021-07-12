@@ -11,7 +11,3 @@ I am currently pursuing a **B.Sc. in Computer Science** degree since March 2017 
 In my free time, I sometimes cook up some cool projects over on my [**GitHub**](https://github.com/kanegaegabriel), and I will [try to]({{site.baseurl}}/hi-what-is-this) highlight a couple of them over here, as well as write about any cool events I participated or whatever else I find interesting.
 
 You can also get in touch with me via [**e-mail**](mailto:gabekanegae@gmail.com).
-
----
-
-If you feel like reading it, [here's pretty much my full life story up until January 2020]({{site.baseurl}}/about-me-the-extended-version).
