@@ -106,7 +106,7 @@ However, a lot of points still left me puzzled:
 
 ![]({{site.baseurl}}/images/reverse-engineering-lunia/text-shader-file.png)
 
-It's also interesting to note the information in the file header: **the game is referenced as `Lunia Project`; the file author, `juhnu`, is possibly [Juhani Honkala](https://www.linkedin.com/in/juhanihonkala/), who is [credited as "Lead Graphics Programmer / Technical Director"](https://youtu.be/NuXgpxTTv0c?t=60); and the file date, 2004** - Lunia was launched in 2006.
+It's also interesting to note the information in the file header: **the game is referenced as `Lunia Project`; the file author, `juhnu`, is possibly [Juhani Honkala](https://www.linkedin.com/in/juhanihonkala/), who is credited as "Lead Graphics Programmer / Technical Director"; and the file date, 2004** - Lunia was launched in 2006.
 
 At this point, after some days of exploring all files and reading most of them from top to bottom while trying to understand how the big web of `.xml` files relate to each other, I got pretty tired of that. Being happy as a result of extracting all item and skill icons as well as all UI elements, I felt like playing with them for a bit...
 
@@ -417,6 +417,6 @@ It's quite interesting to note how much software development has changed over th
 
 Furthermore, I don't think I've previously worked on anything that mashed together so many different areas and technologies like this. Trying to reverse engineer as much as I can from Lunia has been a great learning experience, including regarding topics I never thought I would be interested in. It's been a fantastic (and fun!) couple weeks, and I hope to have the spare time to keep exploring all of this for a while.
 
-To wrap it up, **shout out to [@iamreva2](https://twitter.com/iamreva2), [@DarkRyu550](https://github.com/DarkRyu550) and [@gosiqueira](https://github.com/gosiqueira) for being extremely helpful in this whole endeavor**. Finally, **a big and heartfelt thank you to everyone involved in the making of Lunia**. It definitely played a big role in my youth and in shaping me into who I am today, personality and career-wise. You are all my childhood superheroes.
+To wrap it up, **shout out to [@renatavinhaga](https://github.com/renatavinhaga), [@DarkRyu550](https://github.com/DarkRyu550) and [@gosiqueira](https://github.com/gosiqueira) for being extremely helpful in this whole endeavor**. Finally, **a big and heartfelt thank you to everyone involved in the making of Lunia**. It definitely played a big role in my youth and in shaping me into who I am today, personality and career-wise. You are all my childhood superheroes.
 
-{% include youtube.html id="53CnPtdPGWk" %}
+{% include youtube.html id="bAFMEfmvWfQ" %}
