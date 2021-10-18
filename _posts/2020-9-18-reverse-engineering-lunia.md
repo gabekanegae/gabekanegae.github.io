@@ -417,6 +417,6 @@ It's quite interesting to note how much software development has changed over th
 
 Furthermore, I don't think I've previously worked on anything that mashed together so many different areas and technologies like this. Trying to reverse engineer as much as I can from Lunia has been a great learning experience, including regarding topics I never thought I would be interested in. It's been a fantastic (and fun!) couple weeks, and I hope to have the spare time to keep exploring all of this for a while.
 
-To wrap it up, **shout out to [@iamreva2](https://twitter.com/iamreva2), [@DarkRyu550](https://github.com/DarkRyu550) and [@gosiqueira](https://github.com/gosiqueira) for being extremely helpful in this whole endeavor**. Finally, **a big and heartfelt thank you to everyone involved in the making of Lunia**. It definitely played a big role in my youth and in shaping me into who I am today, personality and career-wise. You are all my childhood superheroes.
+To wrap it up, **shout out to [@renatavinhaga](https://github.com/renatavinhaga), [@DarkRyu550](https://github.com/DarkRyu550) and [@gosiqueira](https://github.com/gosiqueira) for being extremely helpful in this whole endeavor**. Finally, **a big and heartfelt thank you to everyone involved in the making of Lunia**. It definitely played a big role in my youth and in shaping me into who I am today, personality and career-wise. You are all my childhood superheroes.
 
 {% include youtube.html id="bAFMEfmvWfQ" %}
