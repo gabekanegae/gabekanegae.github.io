@@ -8,7 +8,7 @@ show-more-link: true
 
 At last, **[Advent of Code 2019](https://adventofcode.com/2019)** has come to an end! If you are new to it, it's an Advent calendar full of programming puzzles from December 1st all the way to Christmas, made by the amazing [Eric Wastl](http://was.tl/) every year since 2015.
 
-This was my second year participating, but the first time actually completing all days before the end of the month! You can check my **Python 3** solutions on my **[GitHub](https://github.com/kanegaegabriel/advent-of-code-2019)**, and you can also **keep reading for more info and my comments on the event.**
+This was my second year participating, but the first time actually completing all days before the end of the month! You can check my **Python 3** solutions on my **[GitHub](https://github.com/kanegaegabriel/advent-of-code)**, and you can also **keep reading for more info and my comments on the event.**
 
 <!--more--> ---
 

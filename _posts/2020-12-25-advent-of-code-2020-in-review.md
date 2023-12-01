@@ -8,7 +8,7 @@ show-more-link: true
 
 Happy Holidays! Here I am at the end of another year, having just finished **[Advent of Code 2020](https://adventofcode.com/2020)**! If you are new to it, it's an Advent calendar full of programming puzzles from December 1st all the way to Christmas, made by the amazing [Eric Wastl](http://was.tl/) every year since 2015.
 
-I've been participating since 2018 - [here's my comments on last year's edition]({{site.baseurl}}/advent-of-code-2019-in-review/) -, and this time I actually tried my best to get some sweet leaderboard points! You can check my **Python 3** solutions on my **[GitHub](https://github.com/kanegaegabriel/advent-of-code-2020)**, and you can also **keep reading for more info and my comments on the event.**
+I've been participating since 2018 - [here's my comments on last year's edition]({{site.baseurl}}/advent-of-code-2019-in-review/) -, and this time I actually tried my best to get some sweet leaderboard points! You can check my **Python 3** solutions on my **[GitHub](https://github.com/kanegaegabriel/advent-of-code)**, and you can also **keep reading for more info and my comments on the event.**
 
 <!--more--> ---
 
