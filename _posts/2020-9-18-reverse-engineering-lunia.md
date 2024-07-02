@@ -112,7 +112,7 @@ At this point, after some days of exploring all files and reading most of them f
 
 ### 3. Playing with UI
 
-It had been a few years since I had last made [a project with a graphical interface](https://github.com/kanegaegabriel/battleships). With the spark of motivation from having those thousands of 32x32 icons in hand, I felt like **coding a clone of Lunia's inventory window**. Here it is, in-game:
+It had been a few years since I had last made [a project with a graphical interface](https://github.com/gabekanegae/battleships). With the spark of motivation from having those thousands of 32x32 icons in hand, I felt like **coding a clone of Lunia's inventory window**. Here it is, in-game:
 
 ![]({{site.baseurl}}/images/reverse-engineering-lunia/game-inventory.jpg)
 

@@ -8,7 +8,7 @@ show-more-link: true
 
 Happy Holidays! Here I am at the end of another year, having just finished **[Advent of Code 2020](https://adventofcode.com/2020)**! If you are new to it, it's an Advent calendar full of programming puzzles from December 1st all the way to Christmas, made by the amazing [Eric Wastl](http://was.tl/) every year since 2015.
 
-I've been participating since 2018 - [here's my comments on last year's edition]({{site.baseurl}}/advent-of-code-2019-in-review/) -, and this time I actually tried my best to get some sweet leaderboard points! You can check my **Python 3** solutions on my **[GitHub](https://github.com/kanegaegabriel/advent-of-code)**, and you can also **keep reading for more info and my comments on the event.**
+I've been participating since 2018 - [here's my comments on last year's edition]({{site.baseurl}}/advent-of-code-2019-in-review/) -, and this time I actually tried my best to get some sweet leaderboard points! You can check my **Python 3** solutions on my **[GitHub](https://github.com/gabekanegae/advent-of-code)**, and you can also **keep reading for more info and my comments on the event.**
 
 <!--more--> ---
 
@@ -16,7 +16,7 @@ Once again, the event consists of 50 great programming puzzles, which also award
 
 As puzzles release at midnight EST/UTC-5, or 2AM my time, it's often hard to be awake and ready to compete for leaderboard points. However, this year I did manage to be present for all puzzle release times, completing all of them in the following minutes/hours - which I consider a big personal accomplishment by itself. More than that, **I also scored a total of 389 points over 6 leaderboard spots, placing me at 167th on the Global Leaderboard**, topping last year's score of 351 points at 196th place! Outside of the strict top 100, I managed to complete 25 of the puzzles - exactly half of them - in the top 500! It's fair to note that **this year had [way more people participating](https://twitter.com/ericwastl/status/1333876936024743936), so the leaderboard competition was far fiercer!** If, in the future, you do feel like going down this route, I very much recommend [betaveros', this year's #1, blog post on How to Leaderboard](https://blog.vero.site/post/advent-leaderboard).
 
-With all of those personal achievements in mind, I figured I would play a bit with some [Matplotlib](https://matplotlib.org/), and plotted a graph of my completion times and leaderboard positions! **Top 100s are marked in red, and top 500s are in black.** [Here's the code that I wrote to generate it.](https://github.com/kanegaegabriel/advent-of-code-2020/blob/main/time-plots/time-plots.ipynb)
+With all of those personal achievements in mind, I figured I would play a bit with some [Matplotlib](https://matplotlib.org/), and plotted a graph of my completion times and leaderboard positions! **Top 100s are marked in red, and top 500s are in black.** [Here's the code that I wrote to generate it.](https://github.com/gabekanegae/advent-of-code-2020/blob/main/time-plots/time-plots.ipynb)
 
 ![]({{site.baseurl}}/images/advent-of-code-2020-in-review/time-plot.png)
 
